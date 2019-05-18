@@ -9,11 +9,11 @@ def evaluate(event):
 class Intro(App):
     def __init__(self):
         super(Intro, self).__init__()
-        Lb("Entry fields", fg="red", font="Arial 24")
-        En('First name:')
-        En('Last name:')
-        En('Address:')
-        exp = En("Enter expression:", fg="blue", font="Arial 18")
+        Label("Entry fields", fg="red", font="Arial 24")
+        Entry('First name:')
+        Entry('Last name:')
+        Entry('Address:')
+        exp = Entry("Enter expression:", fg="blue", font="Arial 18")
 
         self.entry = tk.Entry(App.root)
         self.entry.bind('<Return>', self.evaluate)

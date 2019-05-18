@@ -1,34 +1,27 @@
 from tkinter import *
+from tkinter import ttk
 
 root = Tk()
+root.title("Example")
+frame = Frame(root)
+frame.grid()
 
-def hello():
-    print("hello!")
+nb = ttk.Notebook(frame)
+nb.grid()
+fr1 = ttk.Frame(nb)
+nb.add(fr1, text="Frame One")
+fr2 = ttk.Frame(nb)
+nb.add(fr2, text="Frame Two")
+print(nb, fr1)
+print(nb, fr2)
 
-# create a toplevel menu
-menubar = Menu(root)
-menubar.add_command(label="Hello!", command=hello)
-menubar.add_command(label="Quit!", command=root.quit)
 
-# create a pulldown menu, and add it to the menu bar
-filemenu = Menu(menubar, tearoff=0)
-filemenu.add_command(label="Open", command=hello)
-filemenu.add_command(label="Save", command=hello)
-filemenu.add_separator()
-filemenu.add_command(label="Exit", command=root.quit)
-menubar.add_cascade(label="File", menu=filemenu)
+#(The labels are examples, but the rest of the code is identical in structure). 
 
-# create more pulldown menus
-editmenu = Menu(menubar, tearoff=0)
-editmenu.add_command(label="Cut", command=hello)
-editmenu.add_command(label="Copy", command=hello)
-editmenu.add_command(label="Paste", command=hello)
-menubar.add_cascade(label="Edit", menu=editmenu)
+# labelA = ttk.Label(frame1, text = "This is on Frame One")
+# labelA.grid(column=1, row=1)
 
-helpmenu = Menu(menubar, tearoff=0)
-helpmenu.add_command(label="About", command=hello)
-menubar.add_cascade(label="Help", menu=helpmenu)
+# labelB = ttk.Label(frame2, text = "This is on Frame Two")
+# labelB.grid(column=1, row=1)
 
-# display the menu
-root.config(menu=menubar)
 root.mainloop()

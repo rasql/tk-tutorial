@@ -1,18 +1,13 @@
-"""Create Labels with options. Set window title and maximum window size."""
+"""Create Labels with options."""
 
-import tkinter as tk
 from tklib import *
 
-class Intro(App):
+class Demo(App):
     def __init__(self):
-        super(Intro, self).__init__()
-        Lb("Red Text in Times Font", fg="red", font="Times 24")
-        Lb("Green Text in Helvetica Font", fg="light green", bg="dark green",
-		 font="Helvetica 16 bold italic")
-        Lb("Blue Text in Verdana bold", fg="blue", bg="yellow", font="Verdana 30 bold")
+        super(Demo, self).__init__()
+        Label("Red Text in Times Font", foreground="red", font="Times 24")
+        Label("Green Text in Helvetica Font", foreground="green", font="Helvetica 18 bold italic")
+        Label("Blue Text in Verdana bold", foreground="blue", font="Verdana 24 bold")
         
-        App.root.title('My Application')
-        App.root.maxsize(640,320)
-
 if __name__ == '__main__':
-    Intro().run()
+    Demo().run()

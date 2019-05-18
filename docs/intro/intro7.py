@@ -1,15 +1,17 @@
 """Create checkboxes."""
 
-import tkinter as tk
 from tklib import *
 
-class Intro(App):
+class Demo(App):
     def __init__(self):
-        super(Intro, self).__init__()
-        Lb("Checkbox demo", fg="red", font="Arial 24")
-        Ch('Python;Perl;Ruby;Java;C++')
-        Lb('Day of the week', fg='blue')
-        Ch('Mon;Tue;Wed;Thu;Fri', command='print("day")')
-    
+        super(Demo, self).__init__()
+        Label('Checkbox Demo', font='Arial 24')
+
+        Label('Select your favorite languages')
+        Checkbox('Python;Perl;Ruby;Java;C++', 'print(self.selection)')
+        
+        Label('Select your working days')
+        Checkbox('Mon;Tue;Wed;Thu;Fri', 'print(self.selection)')
+
 if __name__ == '__main__':
-    Intro().run()
+    Demo().run()

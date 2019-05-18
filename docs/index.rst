@@ -10,7 +10,8 @@ Welcome to tk tutorial's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-intro/intro
+   intro/intro
+   canvas/canvas
 
 Indices and tables
 ==================

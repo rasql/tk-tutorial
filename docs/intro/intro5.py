@@ -1,16 +1,18 @@
 """Create buttons."""
 
-import tkinter as tk
 from tklib import *
 
-class Intro(App):
+class Demo(App):
     def __init__(self):
-        super(Intro, self).__init__()
-        Lb("Button demo", fg="red", font="Arial 24")
-        Bt('Start', 'print("Start")', fg='red')
-        Bt('Stop', 'print("Stop")', fg='blue')
-        Bt('Quit', quit)
-        Bt('Self', 'print(self)')
+        super(Demo, self).__init__()
+        Label('Button demo',  font='Arial 24')
+        Button('Start', 'print("Start")')
+        Button('Stop', 'print("Stop")')
+        Button('Self', 'print(self)')
+        Button('Destroy', 'self.destroy()')
+        Button('root', 'print(App.root)')
+        Button('parent', 'print(App.parent)')
+        Button('geometry', 'print(App.root.geometry())')
     
 if __name__ == '__main__':
-    Intro().run()
+    Demo().run()
