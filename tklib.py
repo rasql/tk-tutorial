@@ -122,12 +122,12 @@ class Listbox(tk.Listbox):
         self.item = self.items[self.curselection()[0]]
         exec(self.cmd)
 
-class Sc(tk.Scale):
+class Scale(tk.Scale):
     """Define a Scale object."""
     def __init__(self, **kwargs):
         self.var = tk.IntVar()
-        super(Sc, self).__init__(App.parent, variable=self.var, **kwargs)
-        self.pack(side='left')
+        super(Scale, self).__init__(App.parent, variable=self.var, **kwargs)
+        self.grid()
 
 class Combobox(ttk.Combobox):
     """Define a Combobox."""

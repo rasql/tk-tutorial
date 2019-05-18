@@ -1,13 +1,11 @@
 """Painting with ovals."""
-
-import tkinter as tk
 from tklib import *
 
 class Demo(App):
     def __init__(self):
         super(Demo, self).__init__()
-        Label("Painting using ovals", fg="red", font="Arial 24")
-        self.c = Can(600, 300)
+        Label("Painting using ovals", font="Arial 24")
+        self.c = Canvas(600, 300)
         self.c.bind('<B1-Motion>', self.paint)
 
     def paint(self, event):

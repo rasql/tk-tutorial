@@ -1,6 +1,5 @@
 """Display tk Text."""
 
-import tkinter as tk
 from tklib import *
 
 class Demo(App):

@@ -1,6 +1,4 @@
 """Create a canvas and add lines and rectangles."""
-
-import tkinter as tk
 from tklib import *
 
 class Demo(App):

@@ -1,14 +1,12 @@
 """Place random circles on the canvas."""
-
-import tkinter as tk
 from tklib import *
 import random
 
 class Demo(App):
     def __init__(self): 
         super(Demo, self).__init__()
-        Label("Random Circles", fg="red", font="Arial 24")
-        self.c = Can(600, 300)
+        Label("Random Circles", font="Arial 24")
+        self.c = Canvas(600, 300)
 
         w = int(self.c['width'])
         h = int(self.c['height'])
