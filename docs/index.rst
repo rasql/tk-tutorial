@@ -12,6 +12,9 @@ Welcome to tk tutorial's documentation!
 
    intro/intro
    canvas/canvas
+   scrollbar/scrollbar
+   text/text
+   tree/tree
 
 Indices and tables
 ==================

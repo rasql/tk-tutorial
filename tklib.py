@@ -88,8 +88,9 @@ class Entry(ttk.Entry):
 
 class Canvas(tk.Canvas):
     """Define a canvas."""
-    def __init__(self, w, h, **kwargs):
-        super(Canvas, self).__init__(App.parent, width=w, height=h, bg='light blue')
+    def __init__(self, **kwargs):
+        # super(Canvas, self).__init__(App.parent, width=w, height=h, bg='light blue')
+        super(Canvas, self).__init__(App.parent, **kwargs)
         self.grid()
 
     def polygon(self, x0, y0, r, n, **kwargs):
@@ -146,6 +147,17 @@ class Combobox(ttk.Combobox):
         self.item = self.var.get()
         exec(self.cmd)
 
+class Spinbox(ttk.Spinbox):
+    """Define a Spinbox widget."""
+    def __init__(self, cmd='', **kwargs):
+        self.cmd = cmd
+        super(Spinbox, self).__init__(App.parent, **kwargs)
+        self.grid()
+
+    def cb(self, event):
+        """Evaluate the cmd string in the Spinbox context."""
+        exec(self.cmd)
+
 class Separator(ttk.Separator):
     """Insert a separator line."""
     def __init__(self, **kwargs):
@@ -159,6 +171,62 @@ class Labelframe(ttk.Labelframe):
         App.stack.append(App.parent)
         App.parent = self
         self.grid()
+
+class Text(tk.Text):
+    """Insert a text area."""
+    def __init__(self, text='', scroll='', **kwargs):
+        if scroll == '':
+            super(Text, self).__init__(App.parent, **kwargs)
+            self.grid()
+        else:
+            frame = ttk.Frame(App.parent)
+            frame.grid()
+            super(Text, self).__init__(frame, **kwargs)
+            self.grid(row=0, column=0)
+            if 'x' in scroll:
+                scrollx = ttk.Scrollbar(frame, orient=tk.HORIZONTAL, command=self.xview)
+                scrollx.grid(row=1, column=0, sticky='we')
+                self.configure(xscrollcommand=scrollx.set)
+            if 'y' in scroll:
+                scrolly = ttk.Scrollbar(frame, orient=tk.VERTICAL, command=self.yview)
+                scrolly.grid(row=0, column=1, sticky='ns')
+                self.configure(yscrollcommand=scrolly.set)
+        self.insert('1.0', text)
+
+class Scrollbars:
+    """Add xy scrollbars to a widget."""
+    def add_scrollbars(self, Widget, scroll):
+        if scroll == '':
+            super(Widget, self).__init__(App.parent, **kwargs)
+            self.grid()
+        else:
+            frame = ttk.Frame(App.parent)
+            frame.grid()
+            super(Widget, self).__init__(frame, **kwargs)
+            self.grid(row=0, column=0)
+            if 'x' in scroll:
+                scrollx = ttk.Scrollbar(frame, orient=tk.HORIZONTAL, command=self.xview)
+                scrollx.grid(row=1, column=0, sticky='we')
+                self.configure(xscrollcommand=scrollx.set)
+            if 'y' in scroll:
+                scrolly = ttk.Scrollbar(frame, orient=tk.VERTICAL, command=self.yview)
+                scrolly.grid(row=0, column=1, sticky='ns')
+                self.configure(yscrollcommand=scrolly.set)
+
+
+class Canvas(tk.Canvas, Scrollbars):
+    def __init__(self, **kwargs):
+        self.add_scrollbars(Canvas, scroll='', **kwargs)
+
+
+class Treeview(ttk.Treeview):
+    """Insert a treeview area."""
+    def __init__(self, items=[], **kwargs):
+        super(Treeview, self).__init__(App.parent, **kwargs)
+        for item in items:
+            self.insert('', 'end', text=item)
+        self.grid()
+
 
 class Pandedwindow(ttk.Panedwindow):
     """Insert a paned window."""

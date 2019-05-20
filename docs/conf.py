@@ -18,7 +18,9 @@ sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('./intro'))
 sys.path.insert(0, os.path.abspath('./basic'))
 sys.path.insert(0, os.path.abspath('./canvas'))
-
+sys.path.insert(0, os.path.abspath('./scrollbar'))
+sys.path.insert(0, os.path.abspath('./text'))
+sys.path.insert(0, os.path.abspath('./tree'))
 
 # -- Project information -----------------------------------------------------
 
