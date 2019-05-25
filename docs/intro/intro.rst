@@ -11,7 +11,8 @@ The principles are :
 * Same class names
 * Coherent style
 
-We are going to create the **tklib** library which redefines the following objects from the **tk** the newer themed  **ttk** module:
+We are going to create the **tklib** library which redefines the following objects 
+from the **tk** module and the newer themed  **ttk** module:
 
 * Frame
 * Label

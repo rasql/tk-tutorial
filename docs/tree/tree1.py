@@ -11,8 +11,7 @@ class Demo(App):
         super(Demo, self).__init__()
         Label('Treeview Demo', font='Arial 24')
 
-        tree = ttk.Treeview(App.parent)
-        tree.grid()
+        tree = Treeview()
 
         # Inserted at the root, program chooses id:
         tree.insert('', 'end', 'widgets', text='Widget Tour')
@@ -32,7 +31,6 @@ class Demo(App):
         tree.heading('size', text='Size')
         tree.heading('modified', text='Modified')
  
-
         tree.set('widgets', 'size', '12KB')
         size = tree.set('widgets', 'size')
         tree.insert('', 'end', text='Listbox', values=('15KB Yesterday mark'))

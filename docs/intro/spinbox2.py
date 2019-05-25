@@ -7,8 +7,6 @@ class Demo(App):
         super(Demo, self).__init__()
         Label("Spinbox", font="Arial 18")
 
-        Spinbox()
-
         Label('values=(1, 2, 5, 10, 20, 50)')
         Spinbox(values=(1, 2, 5, 10, 20, 50))
 
@@ -24,8 +22,11 @@ class Demo(App):
         Label('to=1.0, increment=0.1')
         Spinbox(to=1.0, increment=0.1)
 
-        sp = Spinbox(cmd='print(self)')
-        print(sp.configure().keys())
+        Label('<Return> configure()')
+        Spinbox(cmd='print(self.configure())')
+
+        Label('<Return> self.val.get()')
+        Spinbox(cmd='print(self.val.get())')
 
 if __name__ == '__main__':
     Demo().run()
