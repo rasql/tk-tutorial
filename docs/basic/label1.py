@@ -15,8 +15,8 @@ class Demo(App):
         Label('First\nname:', padding=50, foreground='green', justify='right', anchor='e')
         Label('Last name:', font='Arial 36', foreground='blue', padding=20)
 
-        App.parent = App.stack.pop()
-        App.parent = App.stack.pop()
+        App.stack[-1] = App.stack.pop()
+        App.stack[-1] = App.stack.pop()
 
         Fr(borderwidth=10, relief='raised')
         Label('First name:', padding=(50, 10), foreground='red', background='yellow')

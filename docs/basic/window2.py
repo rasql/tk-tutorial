@@ -1,9 +1,9 @@
 """Standard dialogs."""
 
 import tkinter as tk
-import tkinter.ttk as ttk
+# import tkinter.ttk as ttk
 from tklib import *
-from tkinter import filedialog
+from tkinter import filedialog, colorchooser
 
 class Demo(App):
     def __init__(self, **kwargs):
@@ -19,6 +19,9 @@ class Demo(App):
 
         Button('Directory', 'App.dir["text"] = tk.filedialog.askdirectory()')
         App.dir = Label('Directory')
+
+        Button('Select color…', 'App.col["text"] = tk.colorchooser.askcolor()')
+        App.col = Label('Color')
 
 if __name__ == '__main__':
     Demo().run()

@@ -6,7 +6,7 @@ class Demo(App):
         super(Demo, self).__init__()
         Label("Canvas configuration", font="Arial 24")
 
-        App.parent=Frame()
+        App.stack[-1]=Frame()
         App.c = Canvas()
         d = App.c.config()
 

@@ -9,8 +9,8 @@ class Demo(App):
         super(Demo, self).__init__()
         Label("Scrollbars", font="Arial 18")
 
-        ttk.Scrollbar(App.parent, orient=tk.HORIZONTAL).grid()
-        ttk.Scrollbar(App.parent, orient=tk.VERTICAL).grid()
+        ttk.Scrollbar(App.stack[-1], orient=tk.HORIZONTAL).grid()
+        ttk.Scrollbar(App.stack[-1], orient=tk.VERTICAL).grid()
        
 if __name__ == '__main__':
     Demo().run()

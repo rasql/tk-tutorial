@@ -93,13 +93,13 @@ Labels
 
 Labels are used to add passive text to the window. 
 We define a new ``Label()`` class which is added automatically to the current
-context which is stored in the class variable ``App.parent``. 
+context which is stored in the class variable ``App.stack[-1]``. 
 For all placement of widgets we are going to use the ``grid()`` method::
 
     class Label(ttk.Label):
         """Create a Label object."""
         def __init__(self, text='Label', **kwargs):
-            super(Label, self).__init__(App.parent, text=text, **kwargs)
+            super(Label, self).__init__(App.stack[-1], text=text, **kwargs)
             self.grid()
 
 

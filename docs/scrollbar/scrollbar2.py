@@ -1,26 +1,19 @@
-"""Scrolling a Text."""
+"""Listbox with a scrollbar."""
 
+import tkinter.ttk as ttk
 from tklib import *
 
 class Demo(App):
     def __init__(self): 
         super(Demo, self).__init__()
-        Label('Scrollable text', font='Arial 24')
+        Label("Listbox with scrollbars", font="Arial 18")
 
-        text = 'long ' * 20
-        text += 'line\n' * 20
+        lb = Listbox(list(range(100)))
+        sb = ttk.Scrollbar(App.stack[-1])
+        sb.grid(row=1, column=1, sticky='ns')
 
-        Label("No scrollbars")
-        Text(text, height=5, wrap='none')
-
-        Label("X scrollbars")
-        Text(text, height=5, scroll='x', wrap='none')
-
-        Label("Y scrollbars")
-        Text(text, height=5, scroll='y', wrap='none')
-
-        Label("XY scrollbars")
-        Text(text, height=5, scroll='xy', wrap='none')
+        lb.config(yscrollcommand=sb.set)
+        sb.config(command=lb.yview)
 
 if __name__ == '__main__':
     Demo().run()

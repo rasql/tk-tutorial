@@ -11,7 +11,7 @@ class Demo(App):
         Button('Self', 'print(self)')
         Button('Destroy', 'self.destroy()')
         Button('root', 'print(App.root)')
-        Button('parent', 'print(App.parent)')
+        Button('parent', 'print(App.stack[-1])')
         Button('geometry', 'print(App.root.geometry())')
     
 if __name__ == '__main__':

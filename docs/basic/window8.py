@@ -1,19 +1,19 @@
-"""Tabbed notebooks."""
+"""Tabbed Text widgets."""
 from tklib import *
 
 class Demo(App):
     def __init__(self, **kwargs):
         super(Demo, self).__init__(**kwargs)
-        Label('Tabbed Notebooks', font='Arial 24')
-        Button()
+        Label('Tabbed Text Widgets', font='Arial 24')
+        Button('Add tab', 'Frame(nb="Tab")')
         
         Notebook()
         Frame(nb='Tab 1')
-        Button()
+        Text()
         Frame(nb='Tab 2')
-        Entry()
+        Text()
         Frame(nb='Tab 3')
-        Canvas(height=100)
+        Text()
 
         Notebook()
         Frame(nb='Tab 1')

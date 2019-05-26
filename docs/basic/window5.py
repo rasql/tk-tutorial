@@ -1,29 +1,24 @@
-"""Separators and Labelframes."""
-
+"""Add Labelframes."""
 from tklib import *
 
 class Demo(App):
     def __init__(self, **kwargs):
         super(Demo, self).__init__(**kwargs)
-        App.root.title('Windows and dialogs')
-
-        Label('Separators and Labelframes', font='Arial 24')
-        Separator()
-
-        Button('New button', 'Button()')
-        Button('New label', 'Label()')
-        Button('New separator', 'Separator()')
-        Separator()
+        Label('Labelframe widget', font='Arial 24')
 
         Labelframe(text='Frame 1', padding=5)
         Button()
-        Label()
+        Canvas(height=100)
 
-        App.parent = App.stack.pop()
+        App.stack.pop()
 
         Labelframe(text='Frame 2', padding=5)
         Button()
-        Label()
+        Entry()
+
+        Frame()
+        Button()
+        Entry()
             
 if __name__ == '__main__':
     Demo().run()

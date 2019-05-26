@@ -5,7 +5,9 @@ class Demo(App):
     def __init__(self):
         super(Demo, self).__init__()
         Label("Canvas", font="Arial 24")
-        c = Canvas(600, 300)
+
+        c = Canvas(width=600, height=300, background='lightblue')
+        
         c.create_line(10, 10, 200, 200, fill='red')
         c.create_line(20, 10, 210, 200, fill='blue', width=3)
         c.create_oval(100, 200, 150, 250, fill='green', width=2)
