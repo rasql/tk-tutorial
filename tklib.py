@@ -33,19 +33,19 @@ def Scrollable(widget, scroll='', **kwargs):
             y.config(command=w.yview)
         App.stack.pop()
         return w
-    
 
 class Frame(ttk.Frame):
     """Create a frame around widgets."""
     def __init__(self, nb=None, **kwargs):
         if nb == None:
             super(Frame, self).__init__(App.stack[-1], **kwargs)
-            App.stack.append(self)
-            self.grid()
         else:
             super(Frame, self).__init__(App.nb, **kwargs)
             App.nb.add(self, text=nb)
-            App.stack[-1] = self
+            print(App.nb, self, nb)
+        # App.stack.append(App.stack[-1])
+        # App.stack[-1] = self
+        self.grid()
 
 class Label(ttk.Label):
     """Create a Label object."""
@@ -109,7 +109,7 @@ class Entry(ttk.Entry, Callback):
             ttk.Label(fr, text=label).grid()
             super(Entry, self).__init__(fr, textvariable=self.val, **kwargs)
             self.grid(row=0, column=1)
-            fr.grid()
+            fr.grid(sticky='e')
         self.bind('<Return>', self.cb)
 
 class Canvas(tk.Canvas):
@@ -118,10 +118,20 @@ class Canvas(tk.Canvas):
         # super(Canvas, self).__init__(App.stack[-1], width=w, height=h, bg='light blue')
         super(Canvas, self).__init__(App.stack[-1], **kwargs)
         self.grid()
-        self.bind('<B')
-        self.bind("<Button-1>", self.start)
-        self.bind("<B1-Motion>", self.move)
+        self.bind('<Button-1>', self.start)
+        self.bind('<B1-Motion>', self.move)
+        
+    def start(self, event=None):
+        # Execute a callback function.
+        self.x0 = event.x
+        self.y0 = event.y
+        self.id = self.create_arc(self.x0, self.y0, self.x0, self.y0)
 
+    def move(self, event=None):
+        self.x1 = event.x
+        self.y1 = event.y
+        self.coords(self.id, self.x0, self.y0, self.x1, self.y1)
+           
     def polygon(self, x0, y0, r, n, **kwargs):
         points = []
         for i in range(n):
@@ -131,17 +141,6 @@ class Canvas(tk.Canvas):
             points.append(x)
             points.append(y)
         self.create_polygon(points, **kwargs)
-
-    def start(self, event=None):
-        # Execute a callback function.
-        self.x0 = event.x
-        self.y0 = event.y
-        self.id = self.create_rectangle(self.x0, self.y0, self.x0, self.y0)
-
-    def move(self, event=None):
-        self.x1 = event.x
-        self.y1 = event.y
-        self.coords(self.id, self.x0, self.y0, self.x1, self.y1)
 
 class Listbox(tk.Listbox):
     """Define a Listbox object."""
@@ -186,7 +185,7 @@ class Combobox(ttk.Combobox):
             ttk.Label(fr, text=label).grid()
             super(Combobox, self).__init__(fr, textvariable=self.val, **kwargs)
             self.grid(row=0, column=1)
-            fr.grid()
+            fr.grid(sticky='e')
 
         self['values'] = values
         self.bind('<<ComboboxSelected>>', self.cb)
@@ -211,7 +210,7 @@ class Spinbox(ttk.Spinbox, Callback):
             ttk.Label(fr, text=label).grid()
             super(Spinbox, self).__init__(fr, textvariable=self.val, to=to, **kwargs)
             self.grid(row=0, column=1)
-            fr.grid()
+            fr.grid(sticky='e')
 
         self.bind('<Return>', self.cb)
 
@@ -270,6 +269,9 @@ class Scrollbars:
                 scrolly.grid(row=0, column=1, sticky='ns')
                 self.configure(yscrollcommand=scrolly.set)
 
+# class Canvas(tk.Canvas, Scrollbars):
+#     def __init__(self, **kwargs):
+#         self.add_scrollbars(Canvas, scroll='', **kwargs)
 
 class Treeview(ttk.Treeview):
     """Insert a treeview area."""
@@ -291,7 +293,6 @@ class Treeview(ttk.Treeview):
 
     def close(self, event=None):
         print('close')
-
 
 
 class Inspector(Treeview):
@@ -324,11 +325,12 @@ class Inspector(Treeview):
         print(id, key, val)
         self.widget[key] = val
 
-class Panedwindow(ttk.Panedwindow):
+class Pandedwindow(ttk.Panedwindow):
     """Insert a paned window."""
     def __init__(self, **kwargs):
-        super(Panedwindow, self).__init__(App.stack[-1], **kwargs)
+        super(Pandedwindow, self).__init__(App.stack[-1], **kwargs)
         App.stack.append(self)
+        App.stack[-1] = self
         self.grid()
 
 class Notebook(ttk.Notebook):
@@ -399,7 +401,7 @@ class App(tk.Frame):
 
     root.columnconfigure(0, weight=1)
     root.rowconfigure(0, weight=1)
-
+    
     stack = [root]
 
     menubar = tk.Menu(root)
