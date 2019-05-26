@@ -7,12 +7,12 @@ from tklib import *
 class Demo(App):
     def __init__(self, **kwargs):
         super(Demo, self).__init__(**kwargs)
-        Label('Themes', font='Arial 24')
+        Label('Style TButton', font='Arial 24')
         Label('configure TButton')
         
         s = ttk.Style()
         themes = s.theme_names()
-        s.configure('TButton', font='Arial 18')
+        s.configure('TButton', font='Arial 24')
   
         for t in themes:
             Button(t)

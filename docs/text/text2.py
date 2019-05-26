@@ -7,12 +7,10 @@ class Demo(App):
         super(Demo, self).__init__()
         Label("Text widget", font="Arial 18")
 
-        Label('2 lines')
-        Text('Initial text...', height=2)
-
-        Label('10 lines')
-        text = Text(height=10)
-        text.insert('1.0', 'Add some text at the beginning of the Text widget.')
+        Spinbox('width', 'App.text["width"]=self.val.get()').set(80)
+        Spinbox('height', 'App.text["height"]=self.val.get()').set(4)
+        
+        App.text = Text('Initial text...', height=2)
 
 if __name__ == '__main__':
     Demo().run()

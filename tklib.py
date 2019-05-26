@@ -76,15 +76,15 @@ class Checkbox:
 class Entry(ttk.Entry, Callback):
     """Create an Entry object with a command string."""
     def __init__(self, label='', cmd='', **kwargs):
-        self.var = tk.StringVar()
+        self.val = tk.StringVar()
         self.cmd = cmd
         if label == '':
-            super(Entry, self).__init__(App.parent, textvariable=self.var, **kwargs)
+            super(Entry, self).__init__(App.parent, textvariable=self.val, **kwargs)
             self.grid()
         else:
             fr = ttk.Frame(App.parent)
             ttk.Label(fr, text=label).grid()
-            super(Entry, self).__init__(fr, textvariable=self.var, **kwargs)
+            super(Entry, self).__init__(fr, textvariable=self.val, **kwargs)
             self.grid(row=0, column=1)
             fr.grid(sticky='e')
         self.bind('<Return>', self.cb)
@@ -95,7 +95,20 @@ class Canvas(tk.Canvas):
         # super(Canvas, self).__init__(App.parent, width=w, height=h, bg='light blue')
         super(Canvas, self).__init__(App.parent, **kwargs)
         self.grid()
+        self.bind('<Button-1>', self.start)
+        self.bind('<B1-Motion>', self.move)
+        
+    def start(self, event=None):
+        # Execute a callback function.
+        self.x0 = event.x
+        self.y0 = event.y
+        self.id = self.create_arc(self.x0, self.y0, self.x0, self.y0)
 
+    def move(self, event=None):
+        self.x1 = event.x
+        self.y1 = event.y
+        self.coords(self.id, self.x0, self.y0, self.x1, self.y1)
+           
     def polygon(self, x0, y0, r, n, **kwargs):
         points = []
         for i in range(n):
@@ -257,8 +270,37 @@ class Treeview(ttk.Treeview):
 
     def close(self, event=None):
         print('close')
-    
 
+
+class Inspector(Treeview):
+    """Display the configuration of a widget."""
+    def __init__(self, widget, **kwargs):
+        Window(str(widget))
+        super(Inspector, self).__init__(columns=0, **kwargs)
+        Button('Update', 'self.update()')
+        self.widget = widget
+        self.update()
+        self.entry = Entry('Content')
+        self.entry.bind('<Return>', self.set_entry)
+
+    def update(self):
+        """Update the configuration data."""
+        d = self.widget.configure()
+        for k, v in d.items():
+            self.insert('', 'end', text=k, values=(v[-1]))
+
+    def select(self, event=None):
+        id = self.focus()
+        val = self.set(id, 0)
+        self.entry.val.set(val)
+
+    def set_entry(self, event=None):
+        val = self.entry.val.get()
+        id = self.focus()
+        key = self.item(id)['text']
+        self.set(id, 0, val)
+        print(id, key, val)
+        self.widget[key] = val
 
 class Pandedwindow(ttk.Panedwindow):
     """Insert a paned window."""

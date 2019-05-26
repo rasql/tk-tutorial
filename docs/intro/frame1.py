@@ -1,17 +1,15 @@
-"""Base your program on this template."""
+"""Places embedded frames."""
 
-import tkinter as tk
 from tklib import *
-
-def callback(event):
-    print(event)
 
 class Demo(App):
     def __init__(self):
         super(Demo, self).__init__()
         Label('Template', font='Arial 24')
 
-        Frame()
+        f = Frame(borderwidth=2, relief='raised')
+        print('frame style', f['style'])
+
         Button()
         Label()
         Entry()
