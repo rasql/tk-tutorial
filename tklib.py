@@ -99,15 +99,15 @@ class Checkbox:
 class Entry(ttk.Entry, Callback):
     """Create an Entry object with a command string."""
     def __init__(self, label='', cmd='', **kwargs):
-        self.var = tk.StringVar()
+        self.val = tk.StringVar()
         self.cmd = cmd
         if label == '':
-            super(Entry, self).__init__(App.stack[-1], textvariable=self.var, **kwargs)
+            super(Entry, self).__init__(App.stack[-1], textvariable=self.val, **kwargs)
             self.grid()
         else:
             fr = ttk.Frame(App.stack[-1])
             ttk.Label(fr, text=label).grid()
-            super(Entry, self).__init__(fr, textvariable=self.var, **kwargs)
+            super(Entry, self).__init__(fr, textvariable=self.val, **kwargs)
             self.grid(row=0, column=1)
             fr.grid()
         self.bind('<Return>', self.cb)
@@ -132,18 +132,16 @@ class Canvas(tk.Canvas):
             points.append(y)
         self.create_polygon(points, **kwargs)
 
-    def start(self, event):
+    def start(self, event=None):
+        # Execute a callback function.
         self.x0 = event.x
         self.y0 = event.y
-        self.id = self.create_line((self.x0, self.y0, self.x0, self.y0))
-        print('start')
+        self.id = self.create_rectangle(self.x0, self.y0, self.x0, self.y0)
 
-    def move(self, event):
-        x1 = event.x
-        y1 = event.y
-        self.itemconfigure(self.id, coords=(self.x0, self.y0, x1, y1))
-        self.id()
-        print('move')
+    def move(self, event=None):
+        self.x1 = event.x
+        self.y1 = event.y
+        self.coords(self.id, self.x0, self.y0, self.x1, self.y1)
 
 class Listbox(tk.Listbox):
     """Define a Listbox object."""
@@ -293,7 +291,39 @@ class Treeview(ttk.Treeview):
 
     def close(self, event=None):
         print('close')
-    
+
+
+
+class Inspector(Treeview):
+    """Display the configuration of a widget."""
+    def __init__(self, widget, **kwargs):
+        Window(str(widget))
+        super(Inspector, self).__init__(columns=0, **kwargs)
+        Button('Update', 'self.update()')
+        self.widget = widget
+        self.update()
+        self.entry = Entry('Content')
+        self.entry.bind('<Return>', self.set_entry)
+
+    def update(self):
+        """Update the configuration data."""
+        d = self.widget.configure()
+        for k, v in d.items():
+            self.insert('', 'end', text=k, values=(v[-1]))
+
+    def select(self, event=None):
+        id = self.focus()
+        val = self.set(id, 0)
+        self.entry.val.set(val)
+
+    def set_entry(self, event=None):
+        val = self.entry.val.get()
+        id = self.focus()
+        key = self.item(id)['text']
+        self.set(id, 0, val)
+        print(id, key, val)
+        self.widget[key] = val
+
 class Panedwindow(ttk.Panedwindow):
     """Insert a paned window."""
     def __init__(self, **kwargs):
@@ -369,8 +399,8 @@ class App(tk.Frame):
 
     root.columnconfigure(0, weight=1)
     root.rowconfigure(0, weight=1)
-    parent = root
-    stack = [parent]
+
+    stack = [root]
 
     menubar = tk.Menu(root)
     root['menu'] = menubar
@@ -380,7 +410,7 @@ class App(tk.Frame):
         """Define the Tk() root widget and a background frame."""
         frame = ttk.Frame(App.root, width=200, height=200, padding=(5, 10))
         frame.grid()
-        App.stack[-1] = frame
+        App.stack.append(frame)
         App.root.bind('<Key>', self.callback)
         App.root.bind('<Escape>', quit)
         App.root.createcommand('tk::mac::ShowPreferences', self.preferences)
