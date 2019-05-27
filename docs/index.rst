@@ -16,6 +16,7 @@ Welcome to tk tutorial's documentation!
    scrollbar/scrollbar
    text/text
    tree/tree
+   window/window
 
 Indices and tables
 ==================

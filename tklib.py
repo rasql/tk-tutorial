@@ -39,14 +39,13 @@ class Frame(ttk.Frame):
     def __init__(self, nb=None, **kwargs):
         if nb == None:
             super(Frame, self).__init__(App.stack[-1], **kwargs)
+            App.stack.append(self)
+            self.grid()
         else:
             super(Frame, self).__init__(App.nb, **kwargs)
             App.nb.add(self, text=nb)
-            print(App.nb, self, nb)
-        # App.stack.append(App.stack[-1])
-        # App.stack[-1] = self
-        self.grid()
-
+            App.stack[-1] = self
+            
 class Label(ttk.Label):
     """Create a Label object."""
     def __init__(self, text='Label', **kwargs):
@@ -125,7 +124,7 @@ class Canvas(tk.Canvas):
         # Execute a callback function.
         self.x0 = event.x
         self.y0 = event.y
-        self.id = self.create_arc(self.x0, self.y0, self.x0, self.y0)
+        self.id = self.create_rectangle(self.x0, self.y0, self.x0, self.y0)
 
     def move(self, event=None):
         self.x1 = event.x
@@ -325,29 +324,28 @@ class Inspector(Treeview):
         print(id, key, val)
         self.widget[key] = val
 
-class Pandedwindow(ttk.Panedwindow):
+class Panedwindow(ttk.Panedwindow):
     """Insert a paned window."""
     def __init__(self, **kwargs):
-        super(Pandedwindow, self).__init__(App.stack[-1], **kwargs)
+        super(Panedwindow, self).__init__(App.stack[-1], **kwargs)
         App.stack.append(self)
-        App.stack[-1] = self
         self.grid()
 
 class Notebook(ttk.Notebook):
     def __init__(self, **kwargs):
-        super(Notebook, self).__init__(App.root, **kwargs)
+        # super(Notebook, self).__init__(App.root, **kwargs)
+        super(Notebook, self).__init__(App.stack[-1], **kwargs)
         App.nb = self
         self.grid()
 
 class Window():
-    """Open a new window."""
+    """Create a new window."""
     def __init__(self, title='Window'):
         top = tk.Toplevel(App.root)
         top.title(title)
-        frame = ttk.Frame(top, width=200, height=200, padding=(5, 10))
+        frame = ttk.Frame(top, width=300, height=200, padding=(5, 10))
         frame.pack()
-        App.stack[-1] = frame
-        App.stack = [App.root]
+        App.stack.append(frame)
 
         App.win = top
         App.menus = [tk.Menu(App.win)]
@@ -410,7 +408,7 @@ class App(tk.Frame):
 
     def __init__(self):
         """Define the Tk() root widget and a background frame."""
-        frame = ttk.Frame(App.root, width=200, height=200, padding=(5, 10))
+        frame = ttk.Frame(App.root, width=300, height=200, padding=(5, 10))
         frame.grid()
         App.stack.append(frame)
         App.root.bind('<Key>', self.callback)

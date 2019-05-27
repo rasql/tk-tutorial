@@ -14,6 +14,7 @@ class Demo(App):
         Entry()
         Frame(nb='Tab 3')
         Canvas(height=100)
+        App.stack.pop()
 
         Notebook()
         Frame(nb='Tab 1')

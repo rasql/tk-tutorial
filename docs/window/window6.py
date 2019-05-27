@@ -21,18 +21,6 @@ class Demo(App):
         p2.add(Canvas(background='yellow'))
         p2.add(Canvas(background='lightgreen'))
         p2.add(Canvas(background='orange'))
-
-        # p=Panedwindow(orient='horizontal')
-        # f=Labelframe(text='Pane 1', height=200)
-        # Button()
-        # Label()
-    
-        # f2=Labelframe(text='Pane 2', height=200)
-        # Button()
-        # Label()
-
-        # p.add(f)
-        # p.add(f2)
             
 if __name__ == '__main__':
     Demo().run()

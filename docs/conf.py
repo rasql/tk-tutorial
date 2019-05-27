@@ -22,6 +22,7 @@ sys.path.insert(0, os.path.abspath('./menu'))
 sys.path.insert(0, os.path.abspath('./scrollbar'))
 sys.path.insert(0, os.path.abspath('./text'))
 sys.path.insert(0, os.path.abspath('./tree'))
+sys.path.insert(0, os.path.abspath('./window'))
 
 # -- Project information -----------------------------------------------------
 
