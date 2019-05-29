@@ -11,5 +11,13 @@ class Demo(App):
 
         App.sel = Label('Selection', font='Arial 24')
 
+        Listbox('Mon;Tue;Wed;Thu;Fri;Sat;Sun', 'print(self)')
+
+        Label("Listbox multiple", font="Arial 18")
+        Listbox('Mon;Tue;Wed;Thu;Fri;Sat;Sun', selectmode=tk.MULTIPLE)
+
+        Label("Listbox extended", font="Arial 18")
+        Listbox('Mon;Tue;Wed;Thu;Fri;Sat;Sun', selectmode=tk.EXTENDED)
+
 if __name__ == '__main__':
     Demo().run()

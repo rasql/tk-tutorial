@@ -188,16 +188,3 @@ A **combobox** combines a list of choices with an entry. The user can select fro
 This is a screen capture of the above program.
 
 .. image:: intro9.png
-
-
-Listbox
--------
-
-A **listbox** lets the user can select from the list. The list can be long and scrollable.
-
-.. automodule:: listbox2
-   :members:
-
-This is a screen capture of the above program.
-
-.. image:: listbox2.png

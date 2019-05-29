@@ -11,6 +11,8 @@ Welcome to tk tutorial's documentation!
    :caption: Contents:
 
    intro/intro
+   basic/basic
+   listbox/listbox
    menu/menu
    canvas/canvas
    scrollbar/scrollbar

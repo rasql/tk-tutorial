@@ -149,17 +149,35 @@ class Listbox(tk.Listbox):
         if isinstance(items, str):
             items = items.split(';')
         self.items = items
-        for item in items:
-            self.insert(tk.END, item)
-        for i in range(0, self.size(), 2):
-            self.itemconfigure(i, background='#f0f0ff')
+        self.var = tk.StringVar()
+        self.var.set(items)
+        self.config(listvariable=self.var)
+        # for item in items:
+        #     self.insert(tk.END, item)
+        self.coloring()
         self.grid()
         self.bind('<<ListboxSelect>>', self.cb)
+        self.bind('<Button-1>', self.button1)
+        self.bind('<Return>', self.enter)
 
+    def coloring(self):
+        for i in range(self.size()):
+            if i % 2: 
+               self.itemconfigure(i, background='#f0f0ff')
+            else:
+                self.itemconfigure(i, background='#ffffff')
+                
     def cb(self, event):
         """Evaluate the cmd string in the Listbox context."""
+        print('select', self.curselection())
         self.item = self.items[self.curselection()[0]]
         exec(self.cmd)
+
+    def button1(self, event):
+        print('button1', event)
+
+    def enter(self, event):
+        print('enter', event)
 
 class Scale(tk.Scale):
     """Define a Scale object."""
@@ -246,6 +264,11 @@ class Text(tk.Text):
                 scrolly = ttk.Scrollbar(frame, orient=tk.VERTICAL, command=self.yview)
                 scrolly.grid(row=0, column=1, sticky='ns')
                 self.configure(yscrollcommand=scrolly.set)
+        self.insert('1.0', text)
+
+    def set(self, text):
+        """Set Text to text."""
+        self.delete('1.0', 'end')
         self.insert('1.0', text)
 
 class Scrollbars:
@@ -338,19 +361,6 @@ class Notebook(ttk.Notebook):
         App.nb = self
         self.grid()
 
-class Window():
-    """Create a new window."""
-    def __init__(self, title='Window'):
-        top = tk.Toplevel(App.root)
-        top.title(title)
-        frame = ttk.Frame(top, width=300, height=200, padding=(5, 10))
-        frame.pack()
-        App.stack.append(frame)
-
-        App.win = top
-        App.menus = [tk.Menu(App.win)]
-        App.win['menu'] = App.menus[0]
-
 class Menu(tk.Menu):
     """Add a Menu() node to which a menu Item() can be attached."""
     def __init__(self, label, id=0, **kwargs):
@@ -392,6 +402,25 @@ class Item(Callback):
         else:
             App.menus[id].add_command(label=label, command=self.cb, accelerator=acc, **kwargs)
 
+class Window():
+    """Create a new window."""
+    def __init__(self, title='Window'):
+        top = tk.Toplevel(App.root)
+        top.title(title)
+        top.columnconfigure(0, weight=1)
+        top.rowconfigure(0, weight=1)
+        frame = ttk.Frame(top, width=300, height=200, padding=(5, 10))
+        frame.grid(sticky='nswe')
+        ttk.Separator(top).grid(sticky='we')
+        App.status = ttk.Label(top, text='Statusbar', borderwidth=1)
+        App.status.grid(sticky='we')
+
+        App.stack.append(frame)
+
+        App.win = top
+        App.menus = [tk.Menu(App.win)]
+        App.win['menu'] = App.menus[0]
+
 class App(tk.Frame):
     """Define the application base class."""
     root = tk.Tk()
@@ -409,7 +438,11 @@ class App(tk.Frame):
     def __init__(self):
         """Define the Tk() root widget and a background frame."""
         frame = ttk.Frame(App.root, width=300, height=200, padding=(5, 10))
-        frame.grid()
+        frame.grid(sticky='nswe')
+        ttk.Separator(App.root).grid(sticky='we')
+        App.status = ttk.Label(App.root, text='Statusbar', borderwidth=1)
+        App.status.grid(sticky='we')
+
         App.stack.append(frame)
         App.root.bind('<Key>', self.callback)
         App.root.bind('<Escape>', quit)
