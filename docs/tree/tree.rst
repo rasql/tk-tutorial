@@ -90,18 +90,6 @@ This is the result:
 .. image:: tree2.png
 
 
-File browser
-------------
-
-.. automodule:: tree3
-   :members:
-
-This is the result:
-
-.. image:: tree3.png
-
-
-
 Display a 2D table
 ------------------
 

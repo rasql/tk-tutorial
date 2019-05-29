@@ -12,6 +12,7 @@ Welcome to tk tutorial's documentation!
 
    intro/intro
    basic/basic
+   event/event
    listbox/listbox
    menu/menu
    canvas/canvas

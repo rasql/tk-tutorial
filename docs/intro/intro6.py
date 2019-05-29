@@ -2,9 +2,9 @@
 
 from tklib import *
 
-class Intro(App):
+class Demo(App):
     def __init__(self):
-        super(Intro, self).__init__()
+        super(Demo, self).__init__()
         Label('Radiobutton demo', font='Arial 24')
 
         Label('Select your favorite programming language')
@@ -14,4 +14,4 @@ class Intro(App):
         Radiobutton('Mon;Tue;Wed;Thu;Fri', 'print(self.item)')
     
 if __name__ == '__main__':
-    Intro().run()
+    Demo().run()
