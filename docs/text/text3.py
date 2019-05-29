@@ -1,13 +1,13 @@
-"""Selecting text. Cut, Copy, Paste."""
+"""Undo and Redo."""
 
 from tklib import *
 
 class Demo(App):
     def __init__(self): 
         super(Demo, self).__init__()
-        Label("Cut, Copy and Paste", font="Arial 18")
+        Label("Undo and Redo", font="Arial 18")
 
-        App.text = Text('Initial text...')
+        App.text = Text('Initial text...', height=10)
         App.text.config(undo=True)
 
         Button('Selection')

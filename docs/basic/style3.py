@@ -4,12 +4,6 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from tklib import *
 
-# class Frame(ttk.Frame):
-#     def __init__(self, **kwargs):
-#         super(Frame, self).__init__(App.stack[-1], borderwidth=1, relief='solid', **kwargs)
-#         App.stack.append(self)
-#         self.grid()
-
 class Demo(App):
     def __init__(self):
         super(Demo, self).__init__()
@@ -39,8 +33,6 @@ class Demo(App):
         widgets = (f, b, l, e)
         for w in widgets:
             style = w.winfo_class()
-            # print(style)
-            # print(s.layout(style))
 
         print(s.element_options('Frame.border'))
         # s.configure('TFrame', borderwidth=2, background='red', relief='raised')

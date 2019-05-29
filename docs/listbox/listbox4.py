@@ -4,6 +4,7 @@ from tklib import *
 import builtins
 import math
 import os
+import re
 
 class Browser(Listbox):
     def cb(self, event):
@@ -18,13 +19,16 @@ class Demo(App):
         App.obj_name = App.obj.__name__
         App.dir = dir(App.obj)
 
-        App.re = Entry('regexp', 'print(self.val.get())')
-        
+        for x in App.dir:
+            print(x, re.match('a', x))
+
+
         Listbox(App.dir, height=22, cmd='print(self.item); App.T.set(eval(App.obj_name + "." + self.item).__doc__)')
         App.T = Text()
         App.T.grid(row=1, column=1)
         
         App.en = Entry('object=', 'print(self.val.get())', width=12)
+        App.re = Entry('regexp', 'print(self.val.get())')
 
         Button('obj', 'print(App.obj.__name__)')
         Button('dir(obj)', 'print(App.dir)')

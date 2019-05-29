@@ -39,7 +39,6 @@ This is a screen capture of the above program.
 .. image:: event1.png
 
 
-
 Write events to a Text widget
 -----------------------------
 
@@ -55,7 +54,6 @@ just by changing the callback function::
 This is a screen capture of the above program.
 
 .. image:: event2.png
-
 
 
 Detecting Enter, Leave and Return events

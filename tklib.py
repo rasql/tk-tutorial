@@ -39,6 +39,7 @@ class Frame(ttk.Frame):
     def __init__(self, nb=None, **kwargs):
         if nb == None:
             super(Frame, self).__init__(App.stack[-1], **kwargs)
+            self.config(borderwidth=1, relief='solid')
             App.stack.append(self)
             self.grid()
         else:
@@ -179,7 +180,7 @@ class Listbox(tk.Listbox):
     def enter(self, event):
         print('enter', event)
 
-class Scale(tk.Scale):
+class Scale(ttk.Scale):
     """Define a Scale object."""
     def __init__(self, **kwargs):
         self.var = tk.IntVar()
@@ -265,6 +266,19 @@ class Text(tk.Text):
                 scrolly.grid(row=0, column=1, sticky='ns')
                 self.configure(yscrollcommand=scrolly.set)
         self.insert('1.0', text)
+        self.bind('<<Modified>>', self.on_modify)
+        self.bind('<<Selection>>', self.on_select)
+
+    def on_modify(self, event=None):
+        print('modify', event)
+        # flag = self.edit_modified()
+        # print(flag)
+        # if flag:
+        #     print('changed called')
+        self.edit_modified(False)
+
+    def on_select(self, event=None):
+        print('select', event)
 
     def set(self, text):
         """Set Text to text."""
@@ -403,20 +417,21 @@ class Item(Callback):
             App.menus[id].add_command(label=label, command=self.cb, accelerator=acc, **kwargs)
 
 class Window():
-    """Create a new window."""
-    def __init__(self, title='Window'):
-        top = tk.Toplevel(App.root)
+    """Create a new root or toplevel window."""
+    def __init__(self, title='Window', top=None):
+        if top == None:
+            top = tk.Toplevel(App.root)
         top.title(title)
         top.columnconfigure(0, weight=1)
         top.rowconfigure(0, weight=1)
         frame = ttk.Frame(top, width=300, height=200, padding=(5, 10))
         frame.grid(sticky='nswe')
+        
         ttk.Separator(top).grid(sticky='we')
         App.status = ttk.Label(top, text='Statusbar', borderwidth=1)
         App.status.grid(sticky='we')
 
         App.stack.append(frame)
-
         App.win = top
         App.menus = [tk.Menu(App.win)]
         App.win['menu'] = App.menus[0]
@@ -425,10 +440,6 @@ class App(tk.Frame):
     """Define the application base class."""
     root = tk.Tk()
     root.option_add('*tearOff', False)
-
-    root.columnconfigure(0, weight=1)
-    root.rowconfigure(0, weight=1)
-    
     stack = [root]
 
     menubar = tk.Menu(root)
@@ -437,13 +448,7 @@ class App(tk.Frame):
 
     def __init__(self):
         """Define the Tk() root widget and a background frame."""
-        frame = ttk.Frame(App.root, width=300, height=200, padding=(5, 10))
-        frame.grid(sticky='nswe')
-        ttk.Separator(App.root).grid(sticky='we')
-        App.status = ttk.Label(App.root, text='Statusbar', borderwidth=1)
-        App.status.grid(sticky='we')
-
-        App.stack.append(frame)
+        Window(top=App.root)
         App.root.bind('<Key>', self.callback)
         App.root.bind('<Escape>', quit)
         App.root.createcommand('tk::mac::ShowPreferences', self.preferences)
