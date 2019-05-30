@@ -1,4 +1,4 @@
-import sys, os
+import sys, os, re
 import tkinter as tk
 import tkinter.ttk as ttk
 
@@ -57,7 +57,9 @@ class Button(ttk.Button, Callback):
     """Create a Button object."""
     def __init__(self, text='Button', cmd='', **kwargs):
         self.cmd = cmd
-        super(Button, self).__init__(App.stack[-1], text=text, command=self.cb, **kwargs)
+        if isinstance(cmd, str):
+            cmd = self.cb
+        super(Button, self).__init__(App.stack[-1], text=text, command=cmd, **kwargs)
         self.bind('<Return>', self.cb)
         self.grid()
 
@@ -101,6 +103,8 @@ class Entry(ttk.Entry, Callback):
     def __init__(self, label='', cmd='', **kwargs):
         self.val = tk.StringVar()
         self.cmd = cmd
+        if isinstance(cmd, str):
+            cmd = self.cb
         if label == '':
             super(Entry, self).__init__(App.stack[-1], textvariable=self.val, **kwargs)
             self.grid()
@@ -110,7 +114,7 @@ class Entry(ttk.Entry, Callback):
             super(Entry, self).__init__(fr, textvariable=self.val, **kwargs)
             self.grid(row=0, column=1)
             fr.grid(sticky='e')
-        self.bind('<Return>', self.cb)
+        self.bind('<Return>', cmd)
 
 class Canvas(tk.Canvas):
     """Define a canvas."""
@@ -147,19 +151,24 @@ class Listbox(tk.Listbox):
     def __init__(self, items='Listbox', cmd='', **kwargs):
         self.cmd = cmd
         super(Listbox, self).__init__(App.stack[-1], **kwargs)
-        if isinstance(items, str):
-            items = items.split(';')
-        self.items = items
+
         self.var = tk.StringVar()
-        self.var.set(items)
         self.config(listvariable=self.var)
-        # for item in items:
-        #     self.insert(tk.END, item)
+        self.set(items)
         self.coloring()
+        self.obj = 'tk'
+
         self.grid()
         self.bind('<<ListboxSelect>>', self.cb)
         self.bind('<Button-1>', self.button1)
         self.bind('<Return>', self.enter)
+
+    def set(self, items):
+        """Set a list of items to the Listbox."""
+        self.items = items
+        if isinstance(items, str):
+            items = items.split(';')
+        self.var.set(items)
 
     def coloring(self):
         for i in range(self.size()):
@@ -179,6 +188,32 @@ class Listbox(tk.Listbox):
 
     def enter(self, event):
         print('enter', event)
+
+class ListboxSearch(Listbox):
+    def __init__(self, items, **kwargs):
+        Frame().grid(sticky='ns')
+        self.re = Entry('regex', self.filter, width=15)
+        super(ListboxSearch, self).__init__(items, **kwargs)
+        self.bind('<<ListboxSelect>>', self.cb)
+        App.stack.pop()
+
+    def filter(self, event=None):
+        p = self.re.val.get()
+        self.delete(0, 'end')
+        self.filtered = []
+        for s in self.items:
+            m = re.match(p, s)
+            if m:
+                self.insert('end', s)
+        self.coloring()
+    
+    def cb(self, event):
+        sel = self.curselection()[0]
+        self.item = self.get(sel)
+        s = self.obj + '.'+self.item+'.__doc__'
+        doc = eval(s)
+        App.text.delete('1.0', 'end')
+        App.text.insert('end', self.item + '\n' + doc + '\n')
 
 class Scale(ttk.Scale):
     """Define a Scale object."""
@@ -435,6 +470,8 @@ class Window():
         App.win = top
         App.menus = [tk.Menu(App.win)]
         App.win['menu'] = App.menus[0]
+    
+
 
 class App(tk.Frame):
     """Define the application base class."""

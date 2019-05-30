@@ -31,16 +31,14 @@ class Demo(App):
         App.text.insert('end', 'new material ', ('big'))
         App.text.insert('end', 'is ready ', ('big', 'highlight'))
         App.text.insert('end', 'soon', ('highlight'))
-        App.text.tag_bind('big', '<1>', self.cb)
-
-        Inspector(App.text, height=20)
-
-    def cb(self, event):
-        print(event)
-        ContextMenu(App.text)
+    
+        b = Button('Popup Menu')
+        App.m = ContextMenu(b)
         Item('Item 1', 'print(1)')
         Item('Item 2', 'print(2)')
         Item('Item 3', 'print(3)')
+        
+        App.text.tag_bind('big', '<1>', App.m.popup)
 
 if __name__ == '__main__':
     Demo().run()

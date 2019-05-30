@@ -20,6 +20,7 @@ Welcome to tk tutorial's documentation!
    text/text
    tree/tree
    window/window
+   time/time
 
 Indices and tables
 ==================
