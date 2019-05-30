@@ -1,9 +1,8 @@
-import sys, os, re
+import sys, os, re, math
 import tkinter as tk
 import tkinter.ttk as ttk
 
-import math
-from PIL import ImageGrab
+from PIL import Image, ImageTk, ImageGrab
 
 class Callback:
     """Provide a callback function."""
@@ -459,19 +458,44 @@ class Window():
         top.title(title)
         top.columnconfigure(0, weight=1)
         top.rowconfigure(0, weight=1)
+        top.bind('<Command-i>', self.inspector)
+        top.bind('<Command-p>', self.save_img)
+        self.top = top
+
         frame = ttk.Frame(top, width=300, height=200, padding=(5, 10))
         frame.grid(sticky='nswe')
         
         ttk.Separator(top).grid(sticky='we')
-        App.status = ttk.Label(top, text='Statusbar', borderwidth=1)
-        App.status.grid(sticky='we')
+        self.status = ttk.Label(top, text='Statusbar', borderwidth=1)
+        self.status.grid(sticky='we')
 
         App.stack.append(frame)
         App.win = top
         App.menus = [tk.Menu(App.win)]
         App.win['menu'] = App.menus[0]
-    
 
+    def get_img(self, event=None):
+        """Save a screen capture to the current folder."""
+        App.root.update()
+        x = self.top.winfo_rootx()
+        y = self.top.winfo_rooty()
+        w = self.top.winfo_width()
+        h = self.top.winfo_height()
+        self.img = ImageGrab.grab((x, y, x+w, y+h))
+        # self.img.show()
+
+    def save_img(self, event=None):
+        self.get_img()
+        name = type(self).__name__
+        module = sys.modules['__main__']
+        path, name = os.path.split(module.__file__)
+        name, ext = os.path.splitext(name)
+        filename = path + '/' + name + '.png'
+        self.img.save(filename)
+
+    def inspector(self, event=None):
+        print('inspector', self)
+        print()
 
 class App(tk.Frame):
     """Define the application base class."""
@@ -495,27 +519,9 @@ class App(tk.Frame):
         """Run the main loop."""
         self.root.mainloop()
 
-    def save_img(self):
-        """Save a screen capture to the current folder."""
-        App.root.update()
-        x = App.root.winfo_rootx()
-        y = App.root.winfo_rooty()
-        w = App.root.winfo_width()
-        h = App.root.winfo_height()
-        print(x, y, w, h)
-        im = ImageGrab.grab((x, y, x+w, y+h))
-
-        name = type(self).__name__
-        module = sys.modules['__main__']
-        path, name = os.path.split(module.__file__)
-        name, ext = os.path.splitext(name)
-        filename = path + '/' + name + '.png'
-        im.save(filename)
-
     def callback(self, event):
         """Execute a callback function."""
-        if event.char == 'p':
-            self.save_img()
+        pass
 
     def preferences(self):
         """Show preferences dialog."""

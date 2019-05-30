@@ -23,7 +23,7 @@ class Demo(App):
         App.win.bind('<Motion>', self.cb)
 
     def cb(self, event):
-        App.status['text'] = event
+        self.top.status['text'] = event
 
 if __name__ == '__main__':
     Demo().run()
