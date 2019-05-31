@@ -357,6 +357,12 @@ class Treeview(ttk.Treeview):
 
     def select(self, event=None):
         print('select', self.focus())
+        top = self.winfo_toplevel()
+        print(top, type(top))
+        s = self.nametowidget('.status')
+        s['text'] = 'select ' + self.focus()
+        # for w in top.winfo_children():
+        #     print(w)
 
     def open(self, event=None):
         print('open')
@@ -466,7 +472,7 @@ class Window():
         frame.grid(sticky='nswe')
         
         ttk.Separator(top).grid(sticky='we')
-        self.status = ttk.Label(top, text='Statusbar', borderwidth=1)
+        self.status = ttk.Label(top, text='Statusbar', name='status')
         self.status.grid(sticky='we')
 
         App.stack.append(frame)

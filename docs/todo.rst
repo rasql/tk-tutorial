@@ -14,10 +14,11 @@ Inputs (Entry, Spinbox, Combobox, Scale)
 * make FileBrowser universal for any root path
 
 * create root window with Window(title)
+* create multi-lingual apps
 
 
-Concepts
---------
+tklib concepts
+--------------
 
 * tklib is a wrapper around tkinter
 * tklib uses mostly the same class-names (Button, Label)
@@ -35,3 +36,4 @@ Simple apps
 * Photobrowser
 * Media player
 * Graphics editor
+* IDE (like Thonny or IDLE)
