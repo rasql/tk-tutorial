@@ -6,9 +6,123 @@ from PIL import Image, ImageTk, ImageGrab
 
 class Callback:
     """Provide a callback function."""
+
     def cb(self, event=None):
         """Execute the cmd string in the widget context."""
         exec(self.cmd)
+
+    def add_label(self, w, label, **kwargs):
+        """Add a label in front of the widget and put a frame around."""
+        if label == '':
+            # super(w, self).__init__(App.stack[-1], **kwargs)
+            # self = w(App.stack[-1], **kwargs)
+            w.__init__(self, App.stack[-1], **kwargs)
+            self.grid()
+        else:
+            fr = ttk.Frame(App.stack[-1])
+            ttk.Label(fr, text=label).grid()
+            self = w(fr,  **kwargs)
+            self.grid(row=0, column=1)
+            fr.grid(sticky='e')
+
+    def add_command(self, cmd):
+        """Add the function, or execute string via callback."""
+        self.cmd = cmd
+        if isinstance(cmd, str):
+            cmd = self.cb
+        self['command'] = cmd
+
+
+class Combobox(ttk.Combobox, Callback):
+    """Define a Combobox."""
+    def __init__(self, label='', values='', cmd='', **kwargs):
+        # self.add_label(ttk.Combobox, label, **kwargs)
+        self.cmd = cmd
+        if isinstance(cmd, str):
+            cmd = self.cb
+
+        if isinstance(values, str):
+            values = values.split(';')
+       
+        self.var = tk.StringVar()
+        self.var.set(values[0])
+
+        if label == '':
+            super(Combobox, self).__init__(App.stack[-1], textvariable=self.var, **kwargs)
+            self.grid()
+        else:
+            fr = ttk.Frame(App.stack[-1])
+            ttk.Label(fr, text=label).grid()
+            super(Combobox, self).__init__(fr, textvariable=self.var, **kwargs)
+            self.grid(row=0, column=1)
+            fr.grid(sticky='e')
+
+        self['values'] = values
+        self.bind('<<ComboboxSelected>>', cmd)
+
+    def cb(self, event):
+        """Evaluate the cmd string in the Combobox context."""
+        self.item = self.var.get()
+        exec(self.cmd)
+
+class Entry(ttk.Entry, Callback):
+    """Create an Entry object with a command string."""
+    def __init__(self, label='', cmd='', **kwargs):
+        self.var = tk.StringVar()
+
+        if label == '':
+            super(Entry, self).__init__(App.stack[-1], textvariable=self.var, **kwargs)
+            self.grid()
+        else:
+            fr = ttk.Frame(App.stack[-1])
+            ttk.Label(fr, text=label).grid()
+            super(Entry, self).__init__(fr, textvariable=self.var, **kwargs)
+            self.grid(row=0, column=1)
+            fr.grid(sticky='e')
+
+        self.cmd = cmd
+        if isinstance(cmd, str):
+            cmd = self.cb
+        self.bind('<Return>', cmd)
+
+class Scale(ttk.Scale, Callback):
+    """Define a Scale object."""
+    def __init__(self, label='', cmd='', **kwargs):
+        # self.add_label(ttk.Scale, label, **kwargs)
+        if label == '':
+            super(Scale, self).__init__(App.stack[-1], **kwargs)
+            self.grid()
+        else:
+            fr = ttk.Frame(App.stack[-1])
+            ttk.Label(fr, text=label).grid()
+            super(Scale, self).__init__(fr, **kwargs)
+            self.grid(row=0, column=1)
+            fr.grid(sticky='e')
+
+        self.var = tk.IntVar()
+        self['variable'] = self.var
+        self.add_command(cmd)
+
+class Spinbox(ttk.Spinbox, Callback):
+    """Define a Spinbox widget."""
+    def __init__(self, label='', cmd='', to=100, **kwargs):
+        self.var = tk.StringVar()
+        self.var.set(0)
+
+        if label == '':
+            super(Spinbox, self).__init__(App.stack[-1], textvariable=self.var, to=to, **kwargs)
+            self.grid()
+        else:
+            fr = ttk.Frame(App.stack[-1])
+            ttk.Label(fr, text=label).grid()
+            super(Spinbox, self).__init__(fr, textvariable=self.var, to=to, **kwargs)
+            self.grid(row=0, column=1)
+            fr.grid(sticky='e')
+
+        self.cmd = cmd
+        if isinstance(cmd, str):
+            cmd = self.cb
+        self.bind('<Return>', cmd)
 
 def Scrollable(widget, scroll='', **kwargs):
     """Add scrollbars to a widget"""
@@ -96,24 +210,6 @@ class Checkbox:
             if self.val[i].get() == 1:
                 self.selection.append(item)
         exec(self.cmd)
-
-class Entry(ttk.Entry, Callback):
-    """Create an Entry object with a command string."""
-    def __init__(self, label='', cmd='', **kwargs):
-        self.val = tk.StringVar()
-        self.cmd = cmd
-        if isinstance(cmd, str):
-            cmd = self.cb
-        if label == '':
-            super(Entry, self).__init__(App.stack[-1], textvariable=self.val, **kwargs)
-            self.grid()
-        else:
-            fr = ttk.Frame(App.stack[-1])
-            ttk.Label(fr, text=label).grid()
-            super(Entry, self).__init__(fr, textvariable=self.val, **kwargs)
-            self.grid(row=0, column=1)
-            fr.grid(sticky='e')
-        self.bind('<Return>', cmd)
 
 class Canvas(tk.Canvas):
     """Define a canvas."""
@@ -213,58 +309,6 @@ class ListboxSearch(Listbox):
         doc = eval(s)
         App.text.delete('1.0', 'end')
         App.text.insert('end', self.item + '\n' + doc + '\n')
-
-class Scale(ttk.Scale):
-    """Define a Scale object."""
-    def __init__(self, **kwargs):
-        self.var = tk.IntVar()
-        super(Scale, self).__init__(App.stack[-1], variable=self.var, **kwargs)
-        self.grid()
-
-class Combobox(ttk.Combobox):
-    """Define a Combobox."""
-    def __init__(self, label='', values='', cmd='', **kwargs):
-        self.cmd = cmd
-        if isinstance(values, str):
-            values = values.split(';')
-        self.val = tk.StringVar()
-        self.val.set(values[0])
-        if label == '':
-            super(Combobox, self).__init__(App.stack[-1], textvariable=self.val, **kwargs)
-            self.grid()
-        else:
-            fr = ttk.Frame(App.stack[-1])
-            ttk.Label(fr, text=label).grid()
-            super(Combobox, self).__init__(fr, textvariable=self.val, **kwargs)
-            self.grid(row=0, column=1)
-            fr.grid(sticky='e')
-
-        self['values'] = values
-        self.bind('<<ComboboxSelected>>', self.cb)
-
-    def cb(self, event):
-        """Evaluate the cmd string in the Combobox context."""
-        self.item = self.val.get()
-        exec(self.cmd)
-
-class Spinbox(ttk.Spinbox, Callback):
-    """Define a Spinbox widget."""
-    def __init__(self, label='', cmd='', to=100, **kwargs):
-        self.cmd = cmd
-        self.val = tk.StringVar()
-        self.val.set(0)
-
-        if label == '':
-            super(Spinbox, self).__init__(App.stack[-1], textvariable=self.val, to=to, **kwargs)
-            self.grid()
-        else:
-            fr = ttk.Frame(App.stack[-1])
-            ttk.Label(fr, text=label).grid()
-            super(Spinbox, self).__init__(fr, textvariable=self.val, to=to, **kwargs)
-            self.grid(row=0, column=1)
-            fr.grid(sticky='e')
-
-        self.bind('<Return>', self.cb)
 
 class Separator(ttk.Separator):
     """Insert a separator line."""
@@ -417,7 +461,7 @@ class Notebook(ttk.Notebook):
 
 class Menu(tk.Menu):
     """Add a Menu() node to which a menu Item() can be attached."""
-    def __init__(self, label, id=0, **kwargs):
+    def __init__(self, label='Menu', id=0, **kwargs):
         super(Menu, self).__init__(App.menus[0], **kwargs)
         App.menus[id].add_cascade(menu=self, label=label)
         App.menus.append(self)
@@ -504,16 +548,21 @@ class Window():
         print()
 
 class App(tk.Frame):
+    stack = [None]
+    menus = [None]
+
     """Define the application base class."""
-    root = tk.Tk()
-    root.option_add('*tearOff', False)
-    stack = [root]
-
-    menubar = tk.Menu(root)
-    root['menu'] = menubar
-    menus = [menubar]
-
     def __init__(self):
+        root = tk.Tk()
+        root.option_add('*tearOff', False)
+        
+        App.root = root
+        App.stack = [root]
+
+        menubar = tk.Menu(root)
+        App.root['menu'] = menubar
+        App.menus = [menubar]
+
         """Define the Tk() root widget and a background frame."""
         Window(top=App.root)
         App.root.bind('<Key>', self.callback)

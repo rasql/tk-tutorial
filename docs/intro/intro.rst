@@ -188,3 +188,82 @@ A **combobox** combines a list of choices with an entry. The user can select fro
 This is a screen capture of the above program.
 
 .. image:: intro9.png
+
+
+Concepts
+========
+
+The module ``tklib`` is a wrapper around ``tkinter``. 
+It's role is to simplify the placement of widgets and the creation of applications.
+
+When we import ``tklib`` we import automatically ``tk`` and ``tkk``::
+
+    from tklib import *
+    print(dir())
+
+This is what we get when we print ``dir()``::
+
+    ['App', 'Button', 'Callback', 'Canvas', 'Checkbox', 'Combobox', 
+    'ContextMenu', 'Entry', 'Frame', 'Image', 'ImageGrab', 'ImageTk', 
+    'Inspector', 'Item', 'Label', 'Labelframe', 'Listbox', 'ListboxSearch', 
+    'Menu', 'Notebook', 'Panedwindow', 'Radiobutton', 'Scale', 'Scrollable', 
+    'Scrollbars', 'Separator', 'Spinbox', 'Text', 'Treeview', 'Window',
+    '__annotations__', '__builtins__', '__cached__', '__doc__', '__file__', 
+    '__loader__', '__name__', '__package__', '__spec__', 'math', 'os', 're', 
+    'sys', 'tk', 'ttk']
+
+Let's create a root object::
+
+    root = tk.Tk()
+
+Comparision of ``tk``, ``ttk``, ``tklib`` Buttons
+-------------------------------------------------
+
+Now we create a classic (tk) button, a themed (ttk) button and a 
+button from the ``tklib`` module. 
+All ``tklib`` widgets already have convenient arguments. They automatically
+
+* get their master from a stack
+* have a default label (the widget name)
+* have a default placement method (grid)
+
+This code creates three buttons using different constructors::
+
+    tk.Button(root, text='tk.Button').grid()
+    ttk.Button(root, text='ttk.Button').grid()
+    Button()
+
+    root.mainloop()
+
+This is how the three buttons look. We see a little bit of grey background 
+around the newer themed buttons.
+
+.. image:: concept1.png
+
+Default appearance of ``tklib`` widgets
+-------------------------------------
+
+Let's add some more widgets and look at the result. 
+The ``tk.Tk()`` root window does not have a themed background color. It remains white.
+The theme's background color only is adopted after inserting the first frame.
+After inserting a frame, the frame becomes the new master and all subsequent
+widgets are embedded. Frames can be nested::
+
+    root = tk.Tk()
+
+    Button()
+    Label()
+    Entry()
+    Scale()
+
+    Frame()
+    Spinbox()
+    Combobox()
+    Checkbox()
+    Radiobutton()
+
+    root.mainloop()
+
+Here is the result. We notice the default labels Button, Label, Check and Radio.
+
+.. image:: concept2.png
