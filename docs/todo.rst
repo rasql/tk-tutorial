@@ -32,7 +32,9 @@ Simple apps
 
 * Calculator (basic, scientific)
 * Clock (timer, alarm, chronometer)
-* Text editor
+* Text editor (TextEdit)
+* Markdown display editor
+* Hex editor (Hex fiend)
 * Photobrowser
 * Media player
 * Graphics editor

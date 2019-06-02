@@ -35,15 +35,12 @@ class Callback:
 
 class Combobox(ttk.Combobox, Callback):
     """Define a Combobox."""
-    def __init__(self, label='', values='', cmd='', **kwargs):
+    def __init__(self, label='', values='', cmd='', val=None, **kwargs):
         # self.add_label(ttk.Combobox, label, **kwargs)
-        self.cmd = cmd
-        if isinstance(cmd, str):
-            cmd = self.cb
 
         if isinstance(values, str):
             values = values.split(';')
-       
+
         self.var = tk.StringVar()
         self.var.set(values[0])
 
@@ -58,6 +55,12 @@ class Combobox(ttk.Combobox, Callback):
             fr.grid(sticky='e')
 
         self['values'] = values
+        if val != None:
+            self.set(val)
+
+        self.cmd = cmd
+        if isinstance(cmd, str):
+            cmd = self.cb
         self.bind('<<ComboboxSelected>>', cmd)
 
     def cb(self, event):
@@ -67,7 +70,7 @@ class Combobox(ttk.Combobox, Callback):
 
 class Entry(ttk.Entry, Callback):
     """Create an Entry object with a command string."""
-    def __init__(self, label='', cmd='', **kwargs):
+    def __init__(self, label='', cmd='', val=None,  **kwargs):
         self.var = tk.StringVar()
 
         if label == '':
@@ -80,6 +83,9 @@ class Entry(ttk.Entry, Callback):
             self.grid(row=0, column=1)
             fr.grid(sticky='e')
 
+        if val != None:
+            self.var.set(val)
+
         self.cmd = cmd
         if isinstance(cmd, str):
             cmd = self.cb
@@ -87,7 +93,7 @@ class Entry(ttk.Entry, Callback):
 
 class Scale(ttk.Scale, Callback):
     """Define a Scale object."""
-    def __init__(self, label='', cmd='', **kwargs):
+    def __init__(self, label='', cmd='', val=None, **kwargs):
         # self.add_label(ttk.Scale, label, **kwargs)
         if label == '':
             super(Scale, self).__init__(App.stack[-1], **kwargs)
@@ -101,11 +107,15 @@ class Scale(ttk.Scale, Callback):
 
         self.var = tk.IntVar()
         self['variable'] = self.var
+
+        if val != None:
+            self.set(val)
+
         self.add_command(cmd)
 
 class Spinbox(ttk.Spinbox, Callback):
     """Define a Spinbox widget."""
-    def __init__(self, label='', cmd='', to=100, **kwargs):
+    def __init__(self, label='', cmd='', val=None, to=100, **kwargs):
         self.var = tk.StringVar()
         self.var.set(0)
 
@@ -118,6 +128,9 @@ class Spinbox(ttk.Spinbox, Callback):
             super(Spinbox, self).__init__(fr, textvariable=self.var, to=to, **kwargs)
             self.grid(row=0, column=1)
             fr.grid(sticky='e')
+
+        if val != None:
+            self.set(val)
 
         self.cmd = cmd
         if isinstance(cmd, str):
@@ -487,6 +500,8 @@ class Item(Callback):
     """Add a menu item to a Menu() node. Default is the last menu (id=-1)."""
     def __init__(self, label, cmd='', acc='', id=-1, **kwargs):
         self.cmd = cmd
+        if isinstance (cmd, str):
+            cmd = self.cb
         if acc != '':
             key = '<{}>'.format(acc)
             App.root.bind(key, self.cb)
@@ -494,13 +509,13 @@ class Item(Callback):
         if label == '-':
             App.menus[id].add_separator()
         elif label[0] == '*':
-            App.menus[id].add_checkbutton(label=label[1:], command=self.cb, accelerator=acc, **kwargs)
+            App.menus[id].add_checkbutton(label=label[1:], command=cmd, accelerator=acc, **kwargs)
         elif label[0] == '#':
-            App.menus[id].add_radiobutton(label=label[1:], command=self.cb, accelerator=acc, **kwargs)
+            App.menus[id].add_radiobutton(label=label[1:], command=cmd, accelerator=acc, **kwargs)
         else:
-            App.menus[id].add_command(label=label, command=self.cb, accelerator=acc, **kwargs)
+            App.menus[id].add_command(label=label, command=cmd, accelerator=acc, **kwargs)
 
-class Window():
+class Window:
     """Create a new root or toplevel window."""
     def __init__(self, title='Window', top=None):
         if top == None:
@@ -565,6 +580,7 @@ class App(tk.Frame):
 
         """Define the Tk() root widget and a background frame."""
         Window(top=App.root)
+        self.top = root
         App.root.bind('<Key>', self.callback)
         App.root.bind('<Escape>', quit)
         App.root.createcommand('tk::mac::ShowPreferences', self.preferences)

@@ -21,6 +21,7 @@ Welcome to tk tutorial's documentation!
    tree/tree
    window/window
    time/time
+   app/app
 
 Indices and tables
 ==================

@@ -1,4 +1,4 @@
-"""Automatic labels."""
+"""Entry widgets with labels, default value and callback ."""
 
 from tklib import *
 
@@ -8,23 +8,16 @@ def cb(event=None):
 root = tk.Tk()
 
 Frame()
-Combobox()
-Entry()
-Scale()
-Spinbox()
-
-Frame()
 Combobox('Combobox', 'Mon;Tue;Wed', cb)
-Combobox('Combobox', 'Mon;Tue;Wed', 'print(self.get())')
+Combobox('Combobox', 'Mon;Tue;Wed', 'print(self.get())', 'Wed')
 
 Entry('Entry', cb)
-Entry('Entry', 'print(self.get())')
+Entry('Entry', 'print(self.get())', 'text')
 
 Scale('Scale', cb)
-Scale('Scale', 'print(self.get())')
-Scale('Scale', 'print(self.get())', orient='vertical')
+Scale('Scale', 'print(self.get())', 0.5)
 
 Spinbox('Spinbox', cb)
-Spinbox('Spinbox', 'print(self.get())')
+Spinbox('Spinbox', 'print(self.get())', 50)
 
 root.mainloop()

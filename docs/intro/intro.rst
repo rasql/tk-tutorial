@@ -241,7 +241,7 @@ around the newer themed buttons.
 .. image:: concept1.png
 
 Default appearance of ``tklib`` widgets
--------------------------------------
+---------------------------------------
 
 Let's add some more widgets and look at the result. 
 The ``tk.Tk()`` root window does not have a themed background color. It remains white.
@@ -267,3 +267,51 @@ widgets are embedded. Frames can be nested::
 Here is the result. We notice the default labels Button, Label, Check and Radio.
 
 .. image:: concept2.png
+
+
+Input widgets with labels, default value and callbacks
+------------------------------------------------------
+
+Usually an input widget needs a label next to it, so the user knows its meaning.
+We therefore add a ``label`` option to the widget. If the ``label`` option is set,
+a label is placed in front of the input widget and a frame is placed around them.
+
+When an input widget is modified, a callback function can be called::
+
+    def cb(event=None):
+        print('callback')
+
+Sometimes it is convenient to declare an executable command string, instead of 
+having to declare a separate callback function. This command string is executed 
+within the widget environment and ``self`` refers to the widget itself. Here 
+is an example of the two types of callback functions. Both have the label *Combobox*, 
+both have the values *Mon;Tue;We*. The first one calls the callback function ``cab``;
+the second one executes the command string ``print(self.get())`` and prints its value::
+
+    Combobox('Combobox', 'Mon;Tue;Wed', cb)
+    Combobox('Combobox', 'Mon;Tue;Wed', 'print(self.get())', 'Wed')
+
+It is also convenient to have default values for the input widgets. 
+We add a ``val`` option which allows to set an inital value::
+
+    Entry('Entry', cb)
+    Entry('Entry', 'print(self.get())', 'text')
+
+    Scale('Scale', cb)
+    Scale('Scale', 'print(self.get())', 0.5)
+
+    Spinbox('Spinbox', cb)
+    Spinbox('Spinbox', 'print(self.get())', 50)
+
+This is the screen capture of the above exemple:
+
+.. image:: concept3.png
+
+Automatic placement
+-------------------
+
+Widgets are placed automatically with the ``grid`` method.
+
+.. autoclass:: concept4.Demo
+
+.. image:: concept4.png
