@@ -4,8 +4,7 @@ class App:
     """Define the application class."""
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title('App Demo')
-        tk.Label(self.root, text='Hello Tkinter! ' * 3).pack()
+        tk.Label(self.root, text='hello world!', font='Arial 24').pack()
 
     def run(self):
         """Run the main loop."""

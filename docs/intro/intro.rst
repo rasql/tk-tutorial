@@ -27,7 +27,7 @@ Then we create the ``Tk()`` root widget which becomes the root for all other wid
 Then we create a ``Label()`` widget which has *root* as parent and *Hello world* as text attribute. 
 To make the label appear on the window, we must call the ``grid()`` placement method::
 
-    tk.Label(root, text='Hello world! Hello world!').grid()
+    tk.Label(root, text='hello world!', font='Arial 24').grid()
 
 Finally we call the Tk ``mainloop()`` method which keeps the window open until the **close** button is clicked::
 
@@ -50,8 +50,7 @@ The constructor method ``__init__`` creates the root and the label::
 
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title('App Demo')
-        tk.Label(self.root, text='Hello Tkinter! ' * 3).pack()
+        tk.Label(self.root, text='hello world!', font='Arial 24').pack()
 
 The ``run`` method starts the main loop::
 
@@ -67,7 +66,7 @@ Finally we instantiate the App and run it::
 
 This is the result:
 
-.. image:: intro2.png
+.. image:: intro1.png
 
 .. literalinclude:: intro2.py
 
