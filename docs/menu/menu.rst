@@ -132,23 +132,8 @@ is called.
 The ``Menu.post()`` method is used to open the context menu at the current 
 cursor position::
 
-    class ContextMenu(tk.Menu):
-        def __init__(self, widget):
-            """Create a context menu attached to a widget."""
-            super(ContextMenu, self).__init__(widget)
-            App.menus.append(self)
-
-            if (App.root.tk.call('tk', 'windowingsystem')=='aqua'):
-                widget.bind('<2>', self.popup)
-                widget.bind('<Control-1>', self.popup)
-            else:
-                widget.root.bind('<3>', self.popup)
-
-        def popup(self, event):
-            """Open a popup menu."""
-            self.post(event.x_root, event.y_root)
-            return 'break'
-
+.. literalinclude:: tklib.py
+   :pyobject: ContextMenu
 
 .. image:: menu5.png
 

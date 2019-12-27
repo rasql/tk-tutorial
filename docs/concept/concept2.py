@@ -1,5 +1,4 @@
 """Comparing default tklib widgets."""
-
 from tklib import *
 
 root = tk.Tk()

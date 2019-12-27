@@ -1,5 +1,4 @@
 """Display images as listbox."""
-
 from tklib import *
 from PIL import Image, ImageTk
 
@@ -18,5 +17,4 @@ class Demo(App):
             self.images.append(img)
             self.tree.insert('', 'end', text=file, image=img)
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

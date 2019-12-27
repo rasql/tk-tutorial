@@ -1,11 +1,10 @@
 """Display images as labels."""
-
 from tklib import *
 from PIL import Image, ImageTk
 
 class Demo(App):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self):
+        super().__init__()
         Label('Show images as labels', font='Arial 24')
 
         dir = os.listdir('icons')
@@ -23,5 +22,4 @@ class Demo(App):
                 lb = Label(image=img, text=label, compound='top')
                 lb.grid(row=i, column=j)
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

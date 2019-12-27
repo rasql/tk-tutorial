@@ -43,8 +43,8 @@ Text has an **Undo** and **Redo** function.
 :download:`text3.py<text3.py>`
 
 
-Formatting text with tags
--------------------------
+Format text with tags
+---------------------
 
 Text can be formatted with tags.
 
@@ -67,8 +67,8 @@ Custom formats can be added.
 :download:`text5.py<text5.py>`
 
 
-Widgets inside text
--------------------
+Place widgets inside text
+-------------------------
 
 Widgets can be placed inside text. They move with the text.
 
@@ -92,8 +92,8 @@ The exemple below shows the search for vowels which are highlighted in yellow.
 :download:`text7.py<text7.py>`
 
 
-Help text display
------------------
+Show a help text
+----------------
 
 Python being introspective it is easy to add help functionality.
 

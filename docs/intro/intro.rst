@@ -69,9 +69,9 @@ This is the result:
 
 .. image:: intro2.png
 
-:download:`intro2.py<intro2.py>`
-
 .. literalinclude:: intro2.py
+
+:download:`intro2.py<intro2.py>`
 
 
 Classic and themed widgets
@@ -104,9 +104,10 @@ The new themed widgets have a gray background and the buttons have uniform size.
 
 .. image:: intro3.png
 
+.. literalinclude:: intro3.py
+
 :download:`intro3.py<intro3.py>`
 
-.. literalinclude:: intro3.py
 
 Let's define our own widget class
 ---------------------------------
@@ -143,9 +144,9 @@ The following demo creates 4 buttons.
 * The **Self** button prints the button object string to the console
 * The **Destroy** button removes the button from the window
 
-:download:`intro5.py<intro5.py>`
-
 .. literalinclude:: intro5.py
+
+:download:`intro5.py<intro5.py>`
 
 
 Radiobutton
@@ -156,9 +157,9 @@ Only one button is active at any one time.
 
 .. image:: intro6.png
 
-:download:`intro6.py<intro6.py>`
-
 .. literalinclude:: intro6.py
+
+:download:`intro6.py<intro6.py>`
 
 
 Checkbutton
@@ -169,9 +170,9 @@ Multiple checkbuttons can be selected simultaneously.
 
 .. image:: intro7.png
 
-:download:`intro7.py<intro7.py>`
-
 .. literalinclude:: intro7.py
+
+:download:`intro7.py<intro7.py>`
 
 
 Entry field
@@ -182,9 +183,9 @@ where he can enter a string value.
 
 .. image:: intro8.png
 
-:download:`intro8.py<intro8.py>`
-
 .. literalinclude:: intro8.py
+
+:download:`intro8.py<intro8.py>`
 
 
 Combobox
@@ -195,6 +196,6 @@ The user can select from the list, but he can also enter directly a value.
 
 .. image:: intro9.png
 
-:download:`intro9.py<intro9.py>`
-
 .. literalinclude:: intro9.py
+
+:download:`intro9.py<intro9.py>`

@@ -36,12 +36,12 @@ This is a screen capture of the above program.
 
 .. image:: event1.png
 
-:download:`event1.py<event1.py>`
-
 .. literalinclude:: event1.py
 
+:download:`event1.py<event1.py>`
 
-Write events to a Text widget
+
+Write events to a text widget
 -----------------------------
 
 The following program sends **Button** and **Mouse** events to a Text widget,
@@ -56,12 +56,13 @@ This is a screen capture of the above program.
 
 .. image:: event2.png
 
-:download:`event2.py<event2.py>`
-
 .. literalinclude:: event2.py
 
+:download:`event2.py<event2.py>`
 
-Enter, Leave and Return events
+
+
+Enter, leave and return events
 ------------------------------
 
 The following program detects these events::
@@ -76,6 +77,6 @@ This is a screen capture of the above program.
 
 .. image:: event3.png
 
-:download:`event3.py<event3.py>`
-
 .. literalinclude:: event3.py
+
+:download:`event3.py<event3.py>`

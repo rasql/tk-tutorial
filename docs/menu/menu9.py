@@ -1,4 +1,4 @@
-"""Insert a popup menu."""
+"""Insert a pop-up menu."""
 from tklib import *
 
 class Demo(App):
@@ -13,5 +13,4 @@ class Demo(App):
         Item('Item 2', 'print(2)')
         Item('Item 3', 'print(3)')
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

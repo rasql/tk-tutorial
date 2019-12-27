@@ -52,7 +52,7 @@ Let's create a root object::
 
     root = tk.Tk()
 
-Comparision of ``tk``, ``ttk``, ``tklib`` Buttons
+Comparision of ``tk`` and ``ttk`` buttons
 -------------------------------------------------
 
 Now we create a classic (tk) button, a themed (ttk) button and a 
@@ -104,9 +104,13 @@ Here is the result. We notice the default labels Button, Label, Check and Radio.
 
 .. image:: concept2.png
 
+.. literalinclude:: concept2.py
 
-Input widgets with labels, default value and callbacks
-------------------------------------------------------
+:download:`concept2.py<concept2.py>`
+
+
+Label, default value and callback
+---------------------------------
 
 Usually an input widget needs a label next to it, so the user knows its meaning.
 We therefore add a ``label`` option to the widget. If the ``label`` option is set,
@@ -139,9 +143,12 @@ We add a ``val`` option which allows to set an inital value::
     Spinbox('Spinbox', cb)
     Spinbox('Spinbox', 'print(self.get())', 50)
 
-This is the screen capture of the above exemple:
-
 .. image:: concept3.png
+
+.. literalinclude:: concept3.py
+
+:download:`concept3.py<concept3.py>`
+
 
 Automatic placement
 -------------------
@@ -151,3 +158,5 @@ Widgets are placed automatically with the ``grid`` method.
 .. image:: concept4.png
 
 .. literalinclude:: concept4.py
+
+:download:`concept4.py<concept4.py>`

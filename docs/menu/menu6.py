@@ -1,5 +1,4 @@
-"""Insert items at a specific index. 
-This is possible using the Menu.insert() method."""
+"""Insert items at a specific index position."""
 from tklib import *
 
 class Demo(App):

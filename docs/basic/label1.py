@@ -1,8 +1,6 @@
-"""Display images from a folder."""
+"""Display a label with an image."""
 
 import os
-import tkinter as tk
-import tkinter.ttk as ttk
 from tklib import *
 from PIL import Image, ImageTk
 
@@ -24,5 +22,4 @@ class Demo(App):
             lb.grid(column=i, row=1)
             i += 1
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

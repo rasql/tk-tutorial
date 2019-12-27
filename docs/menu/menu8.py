@@ -1,5 +1,4 @@
 """Insert widgets via a menu."""
-
 from tklib import *
 
 class Demo(App):
@@ -18,5 +17,4 @@ class Demo(App):
         Item('Scale', 'Scale()', 'Command-s')
         Item('Text', 'Text(width=30, height=5)', 'Command-t')
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

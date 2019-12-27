@@ -26,5 +26,4 @@ class Demo(App):
 
         self.win.status['text'] = 'a\na'
     
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

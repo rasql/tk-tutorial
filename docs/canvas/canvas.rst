@@ -41,8 +41,8 @@ Text can be added to a canvas with this function:
 :download:`canvas2.py<canvas2.py>`
 
 
-Painting using ovals
---------------------
+Paint with ovals
+----------------
 
 Small ovals can be used to paint with the mouse,
 by binding a callback function to the mouse movement.
@@ -102,8 +102,8 @@ Canvas configuration with tree view
 :download:`canvas7.py<canvas7.py>`
 
 
-Drawing shapes with the mouse
------------------------------
+Draw shapes with the mouse
+--------------------------
 
 .. image:: canvas9.png
 

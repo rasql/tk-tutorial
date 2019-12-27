@@ -1,22 +1,12 @@
-"""Standard fonts."""
-
+"""Show different fonts."""
 from tklib import *
 
 class Demo(App):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        App.root.title('Windows')
+    def __init__(self):
+        super().__init__()
 
-        Label('Standard fonts', font='Arial 24')
-
-        fonts = ['TkDefaultFont', 'TkTextFont', 'TkFixedFont', 'TkMenuFont', 'TkHeadingFont']
+        fonts = ['Times', 'Courier', 'Helvetica', 'Didot']
         for x in fonts:
-            Label(x, font=x+' 18')
+            Label(x, font=x+' 36')
 
-
-        fonts = ['Times', 'Courier', 'Helvetica']
-        for x in fonts:
-            Label(x, font=x+' 18')
-
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

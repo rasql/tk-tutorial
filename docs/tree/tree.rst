@@ -124,9 +124,8 @@ Add items to specific column
 :download:`tree6.py<tree6.py>`
 
 
-Customizing the treeview widget
--------------------------------
-
+Customize the treeview widget
+-----------------------------
 
 .. image:: tree7.png
 

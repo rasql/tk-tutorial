@@ -1,5 +1,4 @@
 """Entry widgets with labels, default value and callback ."""
-
 from tklib import *
 
 def cb(event=None):

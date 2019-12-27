@@ -7,6 +7,6 @@ class Demo(App):
         Label("Help display", font="Arial 24")
 
         str = tk.__doc__
-        App.text = Text(str)
+        App.text = Text(str, width=70)
              
 Demo().run()

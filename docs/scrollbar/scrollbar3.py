@@ -1,4 +1,4 @@
-"""Scrolling a Text."""
+"""Text with a scrollbar."""
 from tklib import *
 
 class Demo(App):
