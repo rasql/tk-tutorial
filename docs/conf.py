@@ -30,7 +30,7 @@ sys.path.insert(0, os.path.abspath('./window'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'tk tutorial'
+project = 'Tk tutorial'
 copyright = '2019, Raphael Holzer'
 author = 'Raphael Holzer'
 
