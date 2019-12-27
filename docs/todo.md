@@ -23,7 +23,7 @@ tklib concepts
 * tklib is a wrapper around tkinter
 * tklib uses mostly the same class-names (Button, Label)
 * tklib gives automatic widget placement using a stack
-* tklib can add lablels (Entry, Spinbox, Combobox, Scale)
+* tklib can add labels (Entry, Spinbox, Combobox, Scale)
 * tklib can add scrollbars (Text, Canvas, Listbox, Treeview)
 
 

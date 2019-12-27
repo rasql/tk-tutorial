@@ -1,9 +1,13 @@
-import sys, os, re, math
+import sys
+import os
+import re
+import math
 import tkinter as tk
 import tkinter.ttk as ttk
 
 from PIL import Image, ImageTk, ImageGrab
 import random
+
 
 class Callback:
     """Provide a callback function."""
@@ -36,6 +40,7 @@ class Callback:
 
 class Combobox(ttk.Combobox, Callback):
     """Define a Combobox."""
+
     def __init__(self, label='', values='', cmd='', val=None, **kwargs):
         # self.add_label(ttk.Combobox, label, **kwargs)
 
@@ -46,7 +51,8 @@ class Combobox(ttk.Combobox, Callback):
         self.var.set(values[0])
 
         if label == '':
-            super(Combobox, self).__init__(App.stack[-1], textvariable=self.var, **kwargs)
+            super(Combobox, self).__init__(
+                App.stack[-1], textvariable=self.var, **kwargs)
             self.grid()
         else:
             fr = ttk.Frame(App.stack[-1])
@@ -69,13 +75,16 @@ class Combobox(ttk.Combobox, Callback):
         self.item = self.var.get()
         exec(self.cmd)
 
+
 class Entry(ttk.Entry, Callback):
     """Create an Entry object with a command string."""
+
     def __init__(self, label='', cmd='', val=None,  **kwargs):
         self.var = tk.StringVar()
 
         if label == '':
-            super(Entry, self).__init__(App.stack[-1], textvariable=self.var, **kwargs)
+            super(Entry, self).__init__(
+                App.stack[-1], textvariable=self.var, **kwargs)
             self.grid()
         else:
             fr = ttk.Frame(App.stack[-1])
@@ -92,8 +101,10 @@ class Entry(ttk.Entry, Callback):
             cmd = self.cb
         self.bind('<Return>', cmd)
 
+
 class Scale(ttk.Scale, Callback):
     """Define a Scale object."""
+
     def __init__(self, label='', cmd='', val=None, **kwargs):
         # self.add_label(ttk.Scale, label, **kwargs)
         if label == '':
@@ -114,19 +125,23 @@ class Scale(ttk.Scale, Callback):
 
         self.add_command(cmd)
 
+
 class Spinbox(ttk.Spinbox, Callback):
     """Define a Spinbox widget."""
+
     def __init__(self, label='', cmd='', val=None, to=100, **kwargs):
         self.var = tk.StringVar()
         self.var.set(0)
 
         if label == '':
-            super(Spinbox, self).__init__(App.stack[-1], textvariable=self.var, to=to, **kwargs)
+            super(Spinbox, self).__init__(
+                App.stack[-1], textvariable=self.var, to=to, **kwargs)
             self.grid()
         else:
             fr = ttk.Frame(App.stack[-1])
             ttk.Label(fr, text=label).grid()
-            super(Spinbox, self).__init__(fr, textvariable=self.var, to=to, **kwargs)
+            super(Spinbox, self).__init__(
+                fr, textvariable=self.var, to=to, **kwargs)
             self.grid(row=0, column=1)
             fr.grid(sticky='e')
 
@@ -137,6 +152,7 @@ class Spinbox(ttk.Spinbox, Callback):
         if isinstance(cmd, str):
             cmd = self.cb
         self.bind('<Return>', cmd)
+
 
 def Scrollable(widget, scroll='', **kwargs):
     """Add scrollbars to a widget"""
@@ -161,8 +177,10 @@ def Scrollable(widget, scroll='', **kwargs):
         App.stack.pop()
         return w
 
+
 class Frame(ttk.Frame):
     """Create a frame around widgets."""
+
     def __init__(self, nb=None, **kwargs):
         if nb == None:
             super(Frame, self).__init__(App.stack[-1], **kwargs)
@@ -173,32 +191,40 @@ class Frame(ttk.Frame):
             super(Frame, self).__init__(App.nb, **kwargs)
             App.nb.add(self, text=nb)
             App.stack[-1] = self
-            
+
+
 class Label(ttk.Label):
     """Create a Label object."""
+
     def __init__(self, text='Label', **kwargs):
         super(Label, self).__init__(App.stack[-1], text=text, **kwargs)
         self.grid()
 
+
 class Button(ttk.Button, Callback):
     """Create a Button object."""
+
     def __init__(self, text='Button', cmd='', **kwargs):
         self.cmd = cmd
         if isinstance(cmd, str):
             cmd = self.cb
-        super(Button, self).__init__(App.stack[-1], text=text, command=cmd, **kwargs)
+        super(Button, self).__init__(
+            App.stack[-1], text=text, command=cmd, **kwargs)
         self.bind('<Return>', self.cb)
         self.grid()
 
+
 class Radiobutton:
     """Create a Radiobutton object."""
+
     def __init__(self, items='Radio', cmd='', **kwargs):
         self.items = items.split(';')
         self.cmd = cmd
         self.val = tk.IntVar()
         self.val.set(0)
         for i, item in enumerate(items.split(';')):
-            r = ttk.Radiobutton(App.stack[-1], text=item, variable=self.val, value=i, command=self.cb, **kwargs)
+            r = ttk.Radiobutton(
+                App.stack[-1], text=item, variable=self.val, value=i, command=self.cb, **kwargs)
             r.grid(sticky='w')
 
     def cb(self):
@@ -206,15 +232,18 @@ class Radiobutton:
         self.item = self.items[self.val.get()]
         exec(self.cmd)
 
+
 class Checkbox:
     """Create a Checkbox object."""
+
     def __init__(self, items='Check', cmd='', **kwargs):
         self.items = items.split(';')
         self.val = []
         self.cmd = cmd
         for i, item in enumerate(items.split(';')):
             self.val.append(tk.IntVar())
-            c = ttk.Checkbutton(App.stack[-1], text=item, command=self.cb, variable=self.val[i], **kwargs)
+            c = ttk.Checkbutton(
+                App.stack[-1], text=item, command=self.cb, variable=self.val[i], **kwargs)
             c.grid(sticky='w')
 
     def cb(self):
@@ -225,15 +254,17 @@ class Checkbox:
                 self.selection.append(item)
         exec(self.cmd)
 
+
 class Canvas(tk.Canvas):
     """Define a canvas."""
+
     def __init__(self, **kwargs):
         # super(Canvas, self).__init__(App.stack[-1], width=w, height=h, bg='light blue')
         super(Canvas, self).__init__(App.stack[-1], **kwargs)
         self.grid()
         self.bind('<Button-1>', self.start)
         self.bind('<B1-Motion>', self.move)
-        
+
     def start(self, event=None):
         # Execute a callback function.
         self.x0 = event.x
@@ -244,7 +275,7 @@ class Canvas(tk.Canvas):
         self.x1 = event.x
         self.y1 = event.y
         self.coords(self.id, self.x0, self.y0, self.x1, self.y1)
-           
+
     def polygon(self, x0, y0, r, n, **kwargs):
         points = []
         for i in range(n):
@@ -255,8 +286,10 @@ class Canvas(tk.Canvas):
             points.append(y)
         self.create_polygon(points, **kwargs)
 
+
 class Listbox(tk.Listbox):
     """Define a Listbox object."""
+
     def __init__(self, items='Listbox', cmd='', **kwargs):
         self.cmd = cmd
         super(Listbox, self).__init__(App.stack[-1], **kwargs)
@@ -281,11 +314,11 @@ class Listbox(tk.Listbox):
 
     def coloring(self):
         for i in range(self.size()):
-            if i % 2: 
-               self.itemconfigure(i, background='#f0f0ff')
+            if i % 2:
+                self.itemconfigure(i, background='#f0f0ff')
             else:
                 self.itemconfigure(i, background='#ffffff')
-                
+
     def cb(self, event):
         """Evaluate the cmd string in the Listbox context."""
         print('draw_selection', self.curselection())
@@ -297,6 +330,7 @@ class Listbox(tk.Listbox):
 
     def enter(self, event):
         print('enter', event)
+
 
 class ListboxSearch(Listbox):
     def __init__(self, items, **kwargs):
@@ -315,7 +349,7 @@ class ListboxSearch(Listbox):
             if m:
                 self.insert('end', s)
         self.coloring()
-    
+
     def cb(self, event):
         sel = self.curselection()[0]
         self.item = self.get(sel)
@@ -324,22 +358,28 @@ class ListboxSearch(Listbox):
         App.text.delete('1.0', 'end')
         App.text.insert('end', self.item + '\n' + doc + '\n')
 
+
 class Separator(ttk.Separator):
     """Insert a separator line."""
+
     def __init__(self, **kwargs):
         super(Separator, self).__init__(App.stack[-1], **kwargs)
         self.grid(sticky="we", pady=5)
 
+
 class Labelframe(ttk.Labelframe):
     """Insert a labelframe."""
+
     def __init__(self, **kwargs):
         super(Labelframe, self).__init__(App.stack[-1], **kwargs)
         App.stack.append(App.stack[-1])
         App.stack[-1] = self
         self.grid()
 
+
 class Text(tk.Text):
     """Insert a text area."""
+
     def __init__(self, text='', scroll='', **kwargs):
         if scroll == '':
             super(Text, self).__init__(App.stack[-1], **kwargs)
@@ -350,11 +390,13 @@ class Text(tk.Text):
             super(Text, self).__init__(frame, **kwargs)
             self.grid(row=0, column=0)
             if 'x' in scroll:
-                scrollx = ttk.Scrollbar(frame, orient=tk.HORIZONTAL, command=self.xview)
+                scrollx = ttk.Scrollbar(
+                    frame, orient=tk.HORIZONTAL, command=self.xview)
                 scrollx.grid(row=1, column=0, sticky='we')
                 self.configure(xscrollcommand=scrollx.set)
             if 'y' in scroll:
-                scrolly = ttk.Scrollbar(frame, orient=tk.VERTICAL, command=self.yview)
+                scrolly = ttk.Scrollbar(
+                    frame, orient=tk.VERTICAL, command=self.yview)
                 scrolly.grid(row=0, column=1, sticky='ns')
                 self.configure(yscrollcommand=scrolly.set)
         self.insert('1.0', text)
@@ -377,8 +419,10 @@ class Text(tk.Text):
         self.delete('1.0', 'end')
         self.insert('1.0', text)
 
+
 class Scrollbars:
     """Add xy scrollbars to a widget."""
+
     def add_scrollbars(self, Widget, scroll, **kwargs):
         if scroll == '':
             super(Widget, self).__init__(App.stack[-1], **kwargs)
@@ -389,11 +433,13 @@ class Scrollbars:
             super(Widget, self).__init__(frame, **kwargs)
             self.grid(row=0, column=0)
             if 'x' in scroll:
-                scrollx = ttk.Scrollbar(frame, orient=tk.HORIZONTAL, command=self.xview)
+                scrollx = ttk.Scrollbar(
+                    frame, orient=tk.HORIZONTAL, command=self.xview)
                 scrollx.grid(row=1, column=0, sticky='we')
                 self.configure(xscrollcommand=scrollx.set)
             if 'y' in scroll:
-                scrolly = ttk.Scrollbar(frame, orient=tk.VERTICAL, command=self.yview)
+                scrolly = ttk.Scrollbar(
+                    frame, orient=tk.VERTICAL, command=self.yview)
                 scrolly.grid(row=0, column=1, sticky='ns')
                 self.configure(yscrollcommand=scrolly.set)
 
@@ -401,8 +447,10 @@ class Scrollbars:
 #     def __init__(self, **kwargs):
 #         self.add_scrollbars(Canvas, scroll='', **kwargs)
 
+
 class Treeview(ttk.Treeview):
     """Insert a treeview area."""
+
     def __init__(self, items=[], **kwargs):
         super(Treeview, self).__init__(App.stack[-1], **kwargs)
         for item in items:
@@ -431,6 +479,7 @@ class Treeview(ttk.Treeview):
 
 class Inspector(Treeview):
     """Display the configuration of a widget."""
+
     def __init__(self, widget, **kwargs):
         Window(str(widget))
         super(Inspector, self).__init__(columns=0, **kwargs)
@@ -459,12 +508,15 @@ class Inspector(Treeview):
         print(id, key, val)
         self.widget[key] = val
 
+
 class Panedwindow(ttk.Panedwindow):
     """Insert a paned window."""
+
     def __init__(self, **kwargs):
         super(Panedwindow, self).__init__(App.stack[-1], **kwargs)
         App.stack.append(self)
         self.grid()
+
 
 class Notebook(ttk.Notebook):
     def __init__(self, **kwargs):
@@ -473,12 +525,15 @@ class Notebook(ttk.Notebook):
         App.nb = self
         self.grid()
 
+
 class Menu(tk.Menu):
     """Add a Menu() node to which a menu Item() can be attached."""
+
     def __init__(self, label='Menu', id=0, **kwargs):
         super(Menu, self).__init__(App.menus[0], **kwargs)
         App.menus[id].add_cascade(menu=self, label=label)
         App.menus.append(self)
+
 
 class ContextMenu(tk.Menu):
     def __init__(self, widget):
@@ -486,7 +541,7 @@ class ContextMenu(tk.Menu):
         super(ContextMenu, self).__init__(widget)
         App.menus.append(self)
 
-        if (App.root.tk.call('tk', 'windowingsystem')=='aqua'):
+        if (App.root.tk.call('tk', 'windowingsystem') == 'aqua'):
             widget.bind('<2>', self.popup)
             widget.bind('<Control-1>', self.popup)
         else:
@@ -497,11 +552,13 @@ class ContextMenu(tk.Menu):
         self.post(event.x_root, event.y_root)
         return 'break'
 
+
 class Item(Callback):
     """Add a menu item to a Menu() node. Default is the last menu (id=-1)."""
+
     def __init__(self, label, cmd='', acc='', id=-1, **kwargs):
         self.cmd = cmd
-        if isinstance (cmd, str):
+        if isinstance(cmd, str):
             cmd = self.cb
         if acc != '':
             key = '<{}>'.format(acc)
@@ -510,14 +567,19 @@ class Item(Callback):
         if label == '-':
             App.menus[id].add_separator()
         elif label[0] == '*':
-            App.menus[id].add_checkbutton(label=label[1:], command=cmd, accelerator=acc, **kwargs)
+            App.menus[id].add_checkbutton(
+                label=label[1:], command=cmd, accelerator=acc, **kwargs)
         elif label[0] == '#':
-            App.menus[id].add_radiobutton(label=label[1:], command=cmd, accelerator=acc, **kwargs)
+            App.menus[id].add_radiobutton(
+                label=label[1:], command=cmd, accelerator=acc, **kwargs)
         else:
-            App.menus[id].add_command(label=label, command=cmd, accelerator=acc, **kwargs)
+            App.menus[id].add_command(
+                label=label, command=cmd, accelerator=acc, **kwargs)
+
 
 class Window:
     """Create a new root or toplevel window."""
+
     def __init__(self, title='Window', top=None):
         if top == None:
             top = tk.Toplevel(App.root)
@@ -530,7 +592,7 @@ class Window:
 
         frame = ttk.Frame(top, width=300, height=200, padding=(5, 10))
         frame.grid(sticky='nswe')
-        
+
         ttk.Separator(top).grid(sticky='we')
         self.status = ttk.Label(top, text='Statusbar', name='status')
         self.status.grid(sticky='we')
@@ -563,15 +625,17 @@ class Window:
         print('inspector', self)
         print()
 
+
 class App(tk.Frame):
     stack = [None]
     menus = [None]
 
     """Define the application base class."""
+
     def __init__(self):
         root = tk.Tk()
         root.option_add('*tearOff', False)
-        
+
         App.root = root
         App.stack = [root]
 
@@ -602,6 +666,7 @@ class App(tk.Frame):
     def help(self):
         """Show help menu."""
         print('show help')
+
 
 if __name__ == '__main__':
     App().run()

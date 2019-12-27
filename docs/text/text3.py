@@ -6,7 +6,7 @@ class Demo(App):
         super().__init__()
         Label("Undo and Redo", font="Arial 18")
 
-        App.text = Text('Initial text...', height=10)
+        App.text = Text('Initial text...', height=10, width=50)
         App.text.config(undo=True)
 
         Button('Selection')

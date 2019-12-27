@@ -1,6 +1,4 @@
 """Base your program on this template."""
-
-import tkinter as tk
 from tklib import *
 
 def callback(event):
@@ -16,5 +14,4 @@ class Demo(App):
         Label()
         Entry()
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()
