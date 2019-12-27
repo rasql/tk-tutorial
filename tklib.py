@@ -287,7 +287,7 @@ class Listbox(tk.Listbox):
                 
     def cb(self, event):
         """Evaluate the cmd string in the Listbox context."""
-        print('select', self.curselection())
+        print('draw_selection', self.curselection())
         self.item = self.items[self.curselection()[0]]
         exec(self.cmd)
 
@@ -369,7 +369,7 @@ class Text(tk.Text):
         self.edit_modified(False)
 
     def on_select(self, event=None):
-        print('select', event)
+        print('draw_selection', event)
 
     def set(self, text):
         """Set Text to text."""
@@ -408,16 +408,16 @@ class Treeview(ttk.Treeview):
             self.insert('', 'end', text=item)
         self.grid()
         self.bind()
-        self.bind('<<TreeviewSelect>>', self.select)
+        self.bind('<<TreeviewSelect>>', self.draw_selection)
         self.bind('<<TreeviewOpen>>', self.open)
         self.bind('<<TreeviewClose>>', self.close)
 
-    def select(self, event=None):
-        print('select', self.focus())
+    def draw_selection(self, event=None):
+        print('draw_selection', self.focus())
         top = self.winfo_toplevel()
         print(top, type(top))
         s = self.nametowidget('.status')
-        s['text'] = 'select ' + self.focus()
+        s['text'] = 'draw_selection ' + self.focus()
         # for w in top.winfo_children():
         #     print(w)
 
@@ -445,7 +445,7 @@ class Inspector(Treeview):
         for k, v in d.items():
             self.insert('', 'end', text=k, values=(v[-1]))
 
-    def select(self, event=None):
+    def draw_selection(self, event=None):
         id = self.focus()
         val = self.set(id, 0)
         self.entry.val.set(val)
