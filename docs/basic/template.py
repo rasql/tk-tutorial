@@ -6,7 +6,7 @@ from tklib import *
 
 class Demo(App):
     def __init__(self, **kwargs):
-        super(Demo, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         App.root.title = 'Tk application template'
         Label('Demo application', font='Arial 24')
 

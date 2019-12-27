@@ -11,7 +11,7 @@ def set(event=None):
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Listbox with search", font="Arial 18")
         App.en = Entry('object', set)
 

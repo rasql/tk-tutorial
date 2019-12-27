@@ -4,7 +4,7 @@ from tklib import *
 
 class Demo(App):
     def __init__(self, **kwargs):
-        super(Demo, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         Label('Scale widget', font='Arial 24')
         
         Scale()

@@ -4,7 +4,7 @@ from tklib import *
 class Demo(App):
     """Create different buttons."""
     def __init__(self, **kwargs):
-        super(Demo, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         App.root.title('Button Demo')
         
         Button()

@@ -36,7 +36,7 @@ class WidgetBrowser():
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label('Widget browser', font='Arial 24')
         b = Button('New Window', DemoWin)
     

@@ -3,7 +3,7 @@ from tklib import *
 class Demo(App):
     """Convert between feet and meters"""
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
 
         Label('Convert between feet and meters', font="Arial 18")
         Label('Enter value and hit ENTER')

@@ -1,11 +1,10 @@
 """Insert items at a specific index. 
 This is possible using the Menu.insert() method."""
-
 from tklib import *
 
 class Demo(App):
     def __init__(self):
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Insert items at specific index.", font="Arial 24")
    
         Menu('Menu')
@@ -24,5 +23,4 @@ class Demo(App):
         Menu('Window', name='window')
         Menu('Help', name='help')
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

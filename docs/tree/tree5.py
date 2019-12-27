@@ -4,7 +4,7 @@ from tklib import *
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label('Insert items to the tree', font='Arial 24')
         
         App.text = Entry('Text', 'print(self.val.get())')

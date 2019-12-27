@@ -20,7 +20,7 @@ Here is an exemple which prints mouse **Button** and **Motion** events to the st
 
     class Demo(App):
         def __init__(self):
-            super(Demo, self).__init__()
+            super().__init__()
             Label("Button and Motion events", font="Arial 24")
             Label('Display the event in the status bar')
 

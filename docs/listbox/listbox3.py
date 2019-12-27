@@ -1,5 +1,4 @@
 """Display built-in functions listbox."""
-
 from tklib import *
 import builtins
 import math
@@ -11,7 +10,7 @@ class Browser(Listbox):
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Tk attributes", font="Arial 18")
 
         App.obj = os
@@ -28,5 +27,4 @@ class Demo(App):
         Button('dir(obj)', 'print(App.dir)')
         Button('dir[0]', 'print(App.dir[0].__doc__)')
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

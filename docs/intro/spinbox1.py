@@ -5,7 +5,7 @@ from tklib import *
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Spinbox", font="Arial 18")
 
         self.spinval = tk.StringVar()

@@ -3,7 +3,7 @@ from tklib import *
 
 class Demo(App):
     def __init__(self):
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Canvas", font="Arial 24")
 
         c = Canvas(width=600, height=300, background='lightblue')

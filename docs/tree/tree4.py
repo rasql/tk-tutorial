@@ -14,7 +14,7 @@ for i in range(n):
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label('Display a 2D table', font='Arial 24')
         Label('Click on header to sort')
         Combobox('A;B;C')

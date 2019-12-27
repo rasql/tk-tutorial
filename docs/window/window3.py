@@ -1,14 +1,10 @@
 """Alert and confirmation dialogs."""
-
-import tkinter as tk
-import tkinter.ttk as ttk
 from tklib import *
-from tkinter import filedialog
-from tkinter import messagebox
+from tkinter import filedialog, messagebox
 
 class Demo(App):
     def __init__(self, **kwargs):
-        super(Demo, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         Label('Alert and confirmation dialogs', font='Arial 24')
 
         Button('Show info', 'tk.messagebox.showinfo(message="Hello world")')
@@ -21,5 +17,4 @@ class Demo(App):
         for t in types:
             Button(t, 'tk.messagebox.showinfo(message="{}", type="{}")'.format(t, t))
             
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

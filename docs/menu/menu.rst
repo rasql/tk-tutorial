@@ -38,13 +38,12 @@ To create a menubar we just can instantiate a series of ``Menu()`` widgets::
     for i in range(1, 7):
         Menu('Menu ' + str(i))
 
-
-.. automodule:: menu1
-   :members:
-
-This is the result:
-
 .. image:: menu1.png
+
+.. literalinclude:: menu1.py
+
+:download:`menu1.py<menu1.py>`
+
 
 Adding items to the menu bar
 ----------------------------
@@ -66,12 +65,12 @@ The following exemple adds 6 items to the 6 menus previously created::
                 cmd = 'print("{}")'.format(label)
                 Item(label, cmd, 'Command-{}'.format(c.lower()))
 
-.. automodule:: menu2
-   :members:
-
-This is the result:
-
 .. image:: menu2.png
+
+.. literalinclude:: menu2.py
+
+:download:`menu2.py<menu2.py>`
+
 
 Menus with sub-menus
 --------------------
@@ -89,21 +88,22 @@ attached to the parent Menu()::
             Item('Item ' + c, 'print(123)', 'Control-' + c.lower())
         Item('Add Item to {}'.format(i), id=i)
 
+This is the ``Menu`` class definition.
 
-.. automodule:: menu3
-   :members:
+.. literalinclude:: tklib.py
+   :pyobject: Menu
 
-.. autoclass:: Menu
-   :members:
+This is the ``Item`` class definition.
 
-.. autoclass:: Item
-   :members:
+.. literalinclude:: tklib.py
+   :pyobject: Item
 
-This is the result:
+.. image:: menu6.png
 
-.. image:: menu3.png
+.. literalinclude:: menu6.py
 
-
+:download:`menu6.py<menu6.py>`
+6
 Checkboxes and radiobuttons
 ---------------------------
 
@@ -113,14 +113,14 @@ The first symbol of the label decides if a command, ceckbox or radiobuttion is:
 * asterisk (*) : make the item a checkbox
 * hashtag (#) : make the item a radiobutton 
 
-.. automodule:: menu4
-   :members:
-
 This is the result:
 
 .. image:: menu4.png
 
+.. literalinclude:: menu4.py
 
+:download:`menu6.py<menu4.py>`
+6
 Context menu
 ------------
 
@@ -149,12 +149,13 @@ cursor position::
             self.post(event.x_root, event.y_root)
             return 'break'
 
-.. automodule:: menu5
-   :members:
-
-This is the result:
 
 .. image:: menu5.png
+
+.. literalinclude:: menu5.py
+
+:download:`menu5.py<menu5.py>`
+
 
 Insert an item at a specific position
 -------------------------------------
@@ -172,13 +173,11 @@ This inserts a new command at the end::
     App.menus[-1].insert(100, 'command', label='Extra item 100')
     App.menus[-1].insert(10, 'command', label='Extra item 10')
 
-
-.. automodule:: menu6
-   :members:
-
-This is the result:
-
 .. image:: menu6.png
+
+.. literalinclude:: menu6.py
+
+:download:`menu6.py<menu6.py>`
 
 
 Different menus for each window
@@ -201,12 +200,12 @@ This shows the creation of two new windows with their different menubars::
         Entry()
         Menu2()
 
-.. automodule:: menu7
-   :members:
-
-This is the result:
-
 .. image:: menu7.png
+
+.. literalinclude:: menu7.py
+
+:download:`menu7.py<menu7.py>`
+
 
 Creating new widgets from the menu
 ----------------------------------
@@ -226,9 +225,19 @@ added to the current window::
     Item('Scale', 'Scale()', 'Command-s')
     Item('Text', 'Text(width=30, height=5)', 'Command-t')
 
-.. automodule:: menu8
-   :members:
-
-This is the result:
 
 .. image:: menu8.png
+
+.. literalinclude:: menu8.py
+
+:download:`menu8.py<menu8.py>`
+
+
+Insert a popup menu
+-------------------
+
+.. image:: menu9.png
+
+.. literalinclude:: menu9.py
+
+:download:`menu9.py<menu9.py>`

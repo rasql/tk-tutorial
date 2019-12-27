@@ -1,10 +1,9 @@
 """Menus with items, separators, checkboxes and radiobuttons."""
-
 from tklib import *
 
 class Demo(App):
     def __init__(self):
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Checkboxes and radiobuttons.", font="Arial 24")
 
         Menu('Checkbox')
@@ -18,5 +17,4 @@ class Demo(App):
 
         Menu('Help', name='help')
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

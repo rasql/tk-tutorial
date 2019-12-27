@@ -1,5 +1,5 @@
-Introduction to Tk
-==================
+Introduction
+============
 
 Tk is a **graphical user interface** (GUI) library. It allows to create windows, buttons and all the 
 other graphical elements. 
@@ -74,8 +74,8 @@ This is the result:
 .. literalinclude:: intro2.py
 
 
-Classic and new themed widgets
-------------------------------
+Classic and themed widgets
+--------------------------
 
 The elements of a graphical user interface are called **widgets**. 
 In Tk there are two generations of widgets:
@@ -108,8 +108,8 @@ The new themed widgets have a gray background and the buttons have uniform size.
 
 .. literalinclude:: intro3.py
 
-Defined our own widget class
-----------------------------
+Let's define our own widget class
+---------------------------------
 
 We are now going to define our own Tk widget classes.
 They have the following advantages:
@@ -130,8 +130,8 @@ This is the new ``Button`` class:
    :pyobject: Button
    
 
-Buttons
--------
+Button
+------
 
 Buttons can be clicked and are used to execute a command associated with them.
 The following demo creates 4 buttons.
@@ -148,8 +148,8 @@ The following demo creates 4 buttons.
 .. literalinclude:: intro5.py
 
 
-Radiobuttons
-------------
+Radiobutton
+-----------
 
 Radiobuttons are active elements which can be clicked and execute actions.
 Only one button is active at any one time.
@@ -161,8 +161,8 @@ Only one button is active at any one time.
 .. literalinclude:: intro6.py
 
 
-Checkbuttons
-------------
+Checkbutton
+-----------
 
 Checkbuttons are active elements which can be clicked and execute actions. 
 Multiple checkbuttons can be selected simultaneously.
@@ -174,8 +174,8 @@ Multiple checkbuttons can be selected simultaneously.
 .. literalinclude:: intro7.py
 
 
-Entry fields
-------------
+Entry field
+-----------
 
 Entry **entry** field presents the user with a single line text field 
 where he can enter a string value.

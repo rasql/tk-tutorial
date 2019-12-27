@@ -1,5 +1,4 @@
 """Display a clock ."""
-
 from tklib import *
 import time
 
@@ -22,7 +21,7 @@ class Clock(Window):
 
 class Demo(App):
     def __init__(self):
-        super(Demo, self).__init__()
+        super().__init__()
         Button('New Clock', Clock)
         Clock()
 

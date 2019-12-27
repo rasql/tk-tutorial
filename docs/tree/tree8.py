@@ -34,7 +34,7 @@ class Inspector(Treeview):
         
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label('Inspector dir(App)', font='Arial 24')
         
         Entry('reg exp')

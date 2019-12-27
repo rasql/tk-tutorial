@@ -1,12 +1,9 @@
 """Open multiple windows."""
-
-import tkinter as tk
-import tkinter.ttk as ttk
 from tklib import *
 
 class Demo(App):
     def __init__(self, **kwargs):
-        super(Demo, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         App.root.title('Windows and dialogs')
 
         Button('New Window', 'Window()')
@@ -24,5 +21,4 @@ class Demo(App):
         Window('Canvas')
         Canvas()
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

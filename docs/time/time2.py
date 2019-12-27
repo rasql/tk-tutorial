@@ -1,5 +1,4 @@
 """Display a timer ."""
-
 from tklib import *
 import time
 
@@ -40,10 +39,9 @@ class Timer(Window):
         self.status['text'] = d
         self.lb.after(1000, self.cb)
 
-
 class Demo(App):
     def __init__(self):
-        super(Demo, self).__init__()
+        super().__init__()
         Button('New Clock', Clock)
         Button('New Timer', Timer)
 

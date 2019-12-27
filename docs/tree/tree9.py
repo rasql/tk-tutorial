@@ -28,7 +28,7 @@ cursors = [
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label('Cursors', font='Arial 24')
 
         for x in cursors:

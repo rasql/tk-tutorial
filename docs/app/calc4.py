@@ -59,7 +59,7 @@ class Calculator():
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Button('New calculator', Calculator)
         Menu('App')
         Item('Calculator', Calculator)

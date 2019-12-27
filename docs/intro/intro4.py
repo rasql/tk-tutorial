@@ -1,4 +1,5 @@
-import tkinter as tk
+"""Counter."""
+from tklib import *
 
 counter = 0
 
@@ -10,7 +11,6 @@ def counter_label(label):
         label.after(1000, count)
     count()
 
-
 root = tk.Tk()
 root.title("Counting Seconds")
 label = tk.Label(root, fg="green")
@@ -20,5 +20,4 @@ button = tk.Button(root, text='Stop', width=25, command=root.destroy)
 button.pack()
 root.mainloop()
 
-if __name__ == '__main__':
-    App.run()
+App.run()

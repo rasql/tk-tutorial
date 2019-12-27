@@ -1,13 +1,10 @@
 """Standard dialogs."""
-
-import tkinter as tk
-# import tkinter.ttk as ttk
 from tklib import *
 from tkinter import filedialog, colorchooser
 
 class Demo(App):
     def __init__(self, **kwargs):
-        super(Demo, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         App.root.title('Windows and dialogs')
         Label('Standard Dialogs', font='Arial 24')
 
@@ -23,5 +20,4 @@ class Demo(App):
         Button('Select color…', 'App.col["text"] = tk.colorchooser.askcolor()')
         App.col = Label('Color')
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

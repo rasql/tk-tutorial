@@ -1,10 +1,9 @@
 """Add menus, items and sub-menus."""
-
 from tklib import *
 
 class Demo(App):
     def __init__(self):
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Menu bar with sub-menus", font="Arial 24")
 
         for i in range(1, 7):
@@ -20,5 +19,4 @@ class Demo(App):
                 Item('Item ' + c, 'print(123)', 'Control-' + c.lower())
             Item('Add Item to {}'.format(i), id=i)
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

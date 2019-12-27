@@ -13,11 +13,22 @@ The goal is to build four simple applications
 Clock
 -----
 
-.. autoclass:: time1.Demo
-   :members:
-
-This is the result:
-
 .. image:: time1.png
 
+.. literalinclude:: time1.py
 
+:download:`time1.py<time1.py>`
+
+
+Timer
+-----
+
+.. image:: time2.png
+
+Or a different layout.
+
+.. image:: time2_.png
+
+.. literalinclude:: time2.py
+
+:download:`time2.py<time2.py>`

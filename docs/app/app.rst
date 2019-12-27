@@ -18,9 +18,11 @@ First, we just do the layout for the buttons::
     Button('%').grid(row=1, column=2)
     Button(':').grid(row=1, column=3)
 
-.. autoclass:: calc1.Demo
-
 .. image:: calc1.png
+
+.. literalinclude:: calc1.py
+
+:download:`calc1.py<calc1.py>`
 
 Then we are going to add callback functions to the keys::
 
@@ -29,10 +31,11 @@ Then we are going to add callback functions to the keys::
         Button('9', 'App.lb["text"]  = float(App.lb["text"])*10 + 9').grid(row=2, column=2)
         Button('x').grid(row=2, column=3)
 
-.. autoclass:: calc2.Demo
-
 .. image:: calc2.png
 
+.. literalinclude:: calc2.py
+
+:download:`calc2.py<calc2.py>`
 
 It turns out that it is simpler to place the calculator logic into 
 a separate function, based on a single character::
@@ -65,13 +68,17 @@ a separate function, based on a single character::
 
             self.lb['text'] = self.val
 
-.. autoclass:: calc3.Demo
-
 .. image:: calc3.png
+
+.. literalinclude:: calc3.py
+
+:download:`calc3.py<calc3.py>`
 
 And finally we put everything together.  
 New Calculator instances can be created via a button press or via a menu.
 
-.. autoclass:: calc4.Calculator
-
 .. image:: calc4.png
+
+.. literalinclude:: calc4.py
+
+:download:`calc4.py<calc4.py>`

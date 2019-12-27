@@ -3,7 +3,7 @@ from tklib import *
 
 class Demo(App):
     def __init__(self, **kwargs):
-        super(Demo, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         Label('Paned windows', font='Arial 24')
 
         p = Panedwindow(orient='horizontal')
@@ -22,5 +22,4 @@ class Demo(App):
         p2.add(Canvas(background='lightgreen'))
         p2.add(Canvas(background='orange'))
             
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

@@ -17,5 +17,4 @@ class App:
         """Run the main loop."""
         self.root.mainloop()
 
-if __name__ == '__main__':
-    App().run()
+App().run()

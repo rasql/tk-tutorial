@@ -1,5 +1,4 @@
 """Use regex to search in a listbox."""
-
 from tklib import *
 import re
 
@@ -21,7 +20,7 @@ class ListboxSearch():
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Listbox with search", font="Arial 18")
 
         App.obj = os
@@ -30,5 +29,4 @@ class Demo(App):
 
         ListboxSearch(App.dir)
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

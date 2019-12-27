@@ -6,7 +6,7 @@ from tklib import *
 
 class Demo(App):
     def __init__(self):
-        super(Demo, self).__init__()
+        super().__init__()
         Label('Widget style', font='Arial 24')
 
         Label('widget state')

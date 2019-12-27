@@ -8,7 +8,7 @@ def callback(event):
 
 class Demo(App):
     def __init__(self):
-        super(Demo, self).__init__()
+        super().__init__()
         Label('Statusbar', font='Arial 24')
         Label('print Motion event to status bar')
         

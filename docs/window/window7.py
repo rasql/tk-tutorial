@@ -3,7 +3,7 @@ from tklib import *
 
 class Demo(App):
     def __init__(self, **kwargs):
-        super(Demo, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         Label('Tabbed Notebooks', font='Arial 24')
         Button()
         
@@ -25,5 +25,4 @@ class Demo(App):
         Frame(nb='Tab 3')
         Canvas(height=100)
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

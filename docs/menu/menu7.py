@@ -1,6 +1,4 @@
 """Insert different menus for each window."""
-
-import tkinter as tk
 from tklib import *
 
 def Menu1():
@@ -16,7 +14,7 @@ def Menu2():
 class Demo(App):
     # constructor
     def __init__(self):
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Different menus for each window.", font="Arial 24")
 
         Menu1()
@@ -32,5 +30,4 @@ class Demo(App):
         Entry()
         Menu2()
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

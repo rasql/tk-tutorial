@@ -37,7 +37,7 @@ class FileBrowser(Treeview):
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label('File browser', font='Arial 24')
         
         FileBrowser()

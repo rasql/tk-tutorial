@@ -28,7 +28,7 @@ def search(event=None):
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Search with regexp", font="Arial 18")
 
         App.text = Text(str, height=10)

@@ -1,10 +1,9 @@
 """Create entry fields."""
-
 from tklib import *
 
 class Demo(App):
     def __init__(self):
-        super(Demo, self).__init__()
+        super().__init__()
         Label('Entry fields', font='Arial 24')
         Entry('First name:', 'print(self.var.get())')
         Entry('Last name:', 'print(self.var.get())')
@@ -13,5 +12,4 @@ class Demo(App):
         Entry('Enter expression', 'App.res["text"] = eval(self.var.get())')
         App.res = Label('Result')
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

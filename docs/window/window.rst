@@ -4,8 +4,8 @@ Windows
 In this section we present how to create new windows and 
 how to open dialog windows.
 
-In order open a new window we instantiate the ``Toplevel`` class. 
-To create new windows, we create a new ``Window`` class::
+To create a new window we define a new ``Window`` class 
+which instantiates the ``Toplevel`` class::
 
     class Window():
         """Create a new window."""
@@ -29,8 +29,11 @@ so new widgets are added to the new window::
     frame.pack()
     App.stack.append(frame)
 
-.. autoclass:: tklib.Window
-   :members:
+This is the constructor method.
+
+.. literalinclude:: tklib.py
+   :pyobject: Window.__init__
+
 
 Create new windows
 ------------------
@@ -45,13 +48,12 @@ closed, the application ends::
     Window('Canvas')
     Canvas()
 
-
-.. automodule:: window1
-   :members:
-
-This is a screen capture of the above program.
-
 .. image:: window1.png
+
+.. literalinclude:: window1.py
+
+:download:`window1.py<window1.py>`
+
 
 The buttons have the following functions:
 
@@ -63,6 +65,7 @@ The buttons have the following functions:
 * **Resize V** allows for only vertical resizing
 * **Iconify** iconifies the window
 
+
 Standard dialogs
 ----------------
 
@@ -73,12 +76,12 @@ Tk provides multiple standard dialogs for
 * asking a directory name
 * finding a color
 
-.. automodule:: window2
-   :members:
-
-This is a screen capture of the above program.
-
 .. image:: window2.png
+
+.. literalinclude:: window2.py
+
+:download:`window2.py<window2.py>`
+
 
 Alert and confirmation dialogs
 ------------------------------
@@ -90,12 +93,12 @@ Tk provides multiple standard dialogs for showing
 * question
 * warning
 
-.. automodule:: window3
-   :members:
-
-This is a screen capture of the above program.
-
 .. image:: window3.png
+
+.. literalinclude:: window3.py
+
+:download:`window3.py<window3.py>`
+
 
 
 Add widgets and separators
@@ -103,12 +106,11 @@ Add widgets and separators
 
 The following demo program shows how to insert buttons, labels and separators.
 
-.. automodule:: window4
-   :members:
-
-This is a screen capture of the above program.
-
 .. image:: window4.png
+
+.. literalinclude:: window4.py
+
+:download:`window4.py<window4.py>`
 
 
 The Labelframe widget
@@ -117,12 +119,12 @@ The Labelframe widget
 The **Labelframe** widget is a frame used for grouping widgets, 
 but has a label attached to it
 
-.. automodule:: window5
-   :members:
-
-This is a screen capture of the above program.
-
 .. image:: window5.png
+
+.. literalinclude:: window5.py
+
+:download:`window5.py<window5.py>`
+
 
 Paned windows
 ---------------------
@@ -130,24 +132,23 @@ Paned windows
 The **Panedwindow** widget creates a slider and allows to change 
 the width or hight between two or more widgets.
 
-.. automodule:: window6
-   :members:
-
-This is a screen capture of the above program.
-
 .. image:: window6.png
+
+.. literalinclude:: window6.py
+
+:download:`window6.py<window6.py>`
+
 
 Tabbed notebooks
 ----------------
 
 The **Notebook** widget creates a section with tabbed frames.
 
-.. automodule:: window7
-   :members:
-
-This is a screen capture of the above program.
-
 .. image:: window7.png
+
+.. literalinclude:: window7.py
+
+:download:`window7.py<window7.py>`
 
 
 Add more tabs
@@ -155,9 +156,8 @@ Add more tabs
 
 In the following example we add more tabs by clicking on a button.
 
-.. automodule:: window8
-   :members:
-
-This is a screen capture of the above program.
-
 .. image:: window8.png
+
+.. literalinclude:: window8.py
+
+:download:`window8.py<window8.py>`

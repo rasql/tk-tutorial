@@ -8,7 +8,7 @@ from PIL import Image, ImageTk
 
 class Demo(App):
     def __init__(self, **kwargs):
-        super(Demo, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         Label('Show images', font='Arial 24')
 
         lb = Label()

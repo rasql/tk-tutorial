@@ -1,10 +1,9 @@
 """Insert a popup menu."""
-
 from tklib import *
 
 class Demo(App):
     def __init__(self):
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Insert widgets via the menu.", font="Arial 24")
 
         text = Text('Initial text...')
