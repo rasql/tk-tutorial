@@ -1,13 +1,28 @@
-"""Create Labels with options."""
+import tkinter as tk
+import tkinter.ttk as ttk
 
-from tklib import *
-
-class Demo(App):
+class App:
+    """Define the application class."""
     def __init__(self):
-        super(Demo, self).__init__()
-        Label("Red Text in Times Font", foreground="red", font="Times 24")
-        Label("Green Text in Helvetica Font", foreground="green", font="Helvetica 18 bold italic")
-        Label("Blue Text in Verdana bold", foreground="blue", font="Verdana 24 bold")
-        
+        self.root = tk.Tk()
+        self.root.title('App Demo')
+        tk.Label(self.root, text='Placing multiple widgets').pack()
+
+        tk.Label(self.root, text='Label').pack()
+        ttk.Label(self.root, text='Label').pack()
+
+        tk.Button(self.root, text='Button').pack()
+        ttk.Button(self.root, text='Button').pack()
+
+        tk.Radiobutton(self.root, text='Radiobutton').pack()
+        ttk.Radiobutton(self.root, text='Radiobutton').pack()
+
+        tk.Checkbutton(self.root, text='Checkbutton').pack()
+        ttk.Checkbutton(self.root, text='Checkbutton').pack()
+
+    def run(self):
+        """Run the main loop."""
+        self.root.mainloop()
+
 if __name__ == '__main__':
-    Demo().run()
+    App().run()

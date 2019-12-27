@@ -1,5 +1,3 @@
-"""The traditional Hello World application."""
-
 import tkinter as tk
 
 class App:
