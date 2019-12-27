@@ -148,6 +148,6 @@ Automatic placement
 
 Widgets are placed automatically with the ``grid`` method.
 
-.. autoclass:: concept4.Demo
-
 .. image:: concept4.png
+
+.. literalinclude:: concept4.py

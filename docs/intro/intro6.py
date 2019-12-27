@@ -1,5 +1,4 @@
 """Create radio buttons."""
-
 from tklib import *
 
 class Demo(App):
@@ -9,9 +8,6 @@ class Demo(App):
 
         Label('Select your favorite programming language')
         Radiobutton('Python;Perl;Ruby;Java;C++', 'print(self.item)')
-        
-        Label('Select your favorite day of the week')
-        Radiobutton('Mon;Tue;Wed;Thu;Fri', 'print(self.item)')
     
 if __name__ == '__main__':
     Demo().run()

@@ -1,5 +1,4 @@
 """Create buttons."""
-
 from tklib import *
 
 class Demo(App):
@@ -10,9 +9,6 @@ class Demo(App):
         Button('Stop', 'print("Stop")')
         Button('Self', 'print(self)')
         Button('Destroy', 'self.destroy()')
-        Button('root', 'print(App.root)')
-        Button('parent', 'print(App.stack[-1])')
-        Button('geometry', 'print(App.root.geometry())')
     
 if __name__ == '__main__':
     Demo().run()

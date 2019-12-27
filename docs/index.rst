@@ -6,19 +6,13 @@
 Welcome to this Tk tutorial!
 ============================
 
-* https://opencv-tutorial.readthedocs
-* https://pygame.readthedocs.io
-* https://pymunk-tutorial.readthedocs.io
-* https://tk-tutorial.readthedocs.io
-* https://cocos2d-tutorial.readthedocs.io
-
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    intro/intro
    basic/basic
+   concept/concept
    event/event
    listbox/listbox
    menu/menu

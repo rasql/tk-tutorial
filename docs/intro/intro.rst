@@ -4,7 +4,7 @@ Introduction to Tk
 Tk is a **graphical user interface** (GUI) library. It allows to create windows, buttons and all the 
 other graphical elements. 
 This tutorial shows how to use **object-oriented programming** (OOP) 
-for making applications using the **Tk** framework. 
+for making applications with the **Tk** framework. 
 
 
 Our first program
@@ -73,46 +73,68 @@ This is the result:
 
 .. literalinclude:: intro2.py
 
-Labels
-------
 
-Labels are used to add passive text to the window. 
-We define a new ``Label()`` class which is added automatically to the current
-context which is stored in the class variable ``App.stack[-1]``. 
-For all placement of widgets we are going to use the ``grid()`` method:
+Classic and new themed widgets
+------------------------------
 
-.. literalinclude:: tklib.py
-   :pyobject: Label
+The elements of a graphical user interface are called **widgets**. 
+In Tk there are two generations of widgets:
 
-This is a screen capture of the result.
+* the classic ``tk`` widgets
+* the new **themed** ``ttk`` widgets
+
+The new themed widgets can be found in the submodule ``tkinter.ttk``. 
+We import the classic and the new themed widgets with this import statement::
+
+    import tkinter as tk
+    import tkinter.ttk as ttk
+
+This creates a **classic label** and a new **themed label**::
+
+    tk.Label(self.root, text='tk.Label').pack()
+    ttk.Label(self.root, text='ttk.Label').pack()
+
+This creates a **classic button** and a new **themed button**::
+
+    tk.Button(self.root, text='tk.Button').pack()
+    ttk.Button(self.root, text='ttk.Button').pack()
+
+This is a screen capture of the result. 
+The new themed widgets have a gray background and the buttons have uniform size.
 
 .. image:: intro3.png
-
 
 :download:`intro3.py<intro3.py>`
 
 .. literalinclude:: intro3.py
 
+Defined our own widget class
+----------------------------
+
+We are now going to define our own Tk widget classes.
+They have the following advantages:
+
+* the **text** option has a default (Label, Button)
+* the **parent** object is automatically set (root)
+* all **keyword** arguments are passed on (kwargs)
+* the **themed** version is used when available (ttk)
+
+This is the new ``Label`` class:
+
+.. literalinclude:: intro.py
+   :pyobject: Label
+
+This is the new ``Button`` class:
+
+.. literalinclude:: intro.py
+   :pyobject: Button
+   
 
 Buttons
 -------
 
 Buttons can be clicked and are used to execute a command associated with them.
-The following demo creates 4 buttons::
-
-    class Demo(App):
-        def __init__(self):
-            super(Demo, self).__init__()
-            Label('Button demo',  font='Arial 24')
-            Button('Start', 'print("Start")')
-            Button('Stop', 'print("Stop")')
-            Button('Self', 'print(self)')
-            Button('Destroy', 'self.destroy()')
-
-.. automodule:: intro5
-   :members:
-
-This is a screen capture of the above program.
+The following demo creates 4 buttons.
 
 .. image:: intro5.png
 
@@ -121,55 +143,58 @@ This is a screen capture of the above program.
 * The **Self** button prints the button object string to the console
 * The **Destroy** button removes the button from the window
 
+:download:`intro5.py<intro5.py>`
+
+.. literalinclude:: intro5.py
+
 
 Radiobuttons
 ------------
 
-Radiobuttons are active elements which can be clicked and execute actions. Only one button is active at any one time.
-
-.. automodule:: intro6
-   :members:
-
-This is a screen capture of the above program.
+Radiobuttons are active elements which can be clicked and execute actions.
+Only one button is active at any one time.
 
 .. image:: intro6.png
+
+:download:`intro6.py<intro6.py>`
+
+.. literalinclude:: intro6.py
 
 
 Checkbuttons
 ------------
 
-Checkbuttons are active elements which can be clicked and execute actions. Multiple checkbuttons can be selected simultaneously.
-
-.. automodule:: intro7
-   :members:
-
-This is a screen capture of the above program.
+Checkbuttons are active elements which can be clicked and execute actions. 
+Multiple checkbuttons can be selected simultaneously.
 
 .. image:: intro7.png
+
+:download:`intro7.py<intro7.py>`
+
+.. literalinclude:: intro7.py
 
 
 Entry fields
 ------------
 
-Entry **entry** field presents the user with a single line text field where he can enter a string value.
-
-.. automodule:: intro8
-   :members:
-
-This is a screen capture of the above program.
+Entry **entry** field presents the user with a single line text field 
+where he can enter a string value.
 
 .. image:: intro8.png
+
+:download:`intro8.py<intro8.py>`
+
+.. literalinclude:: intro8.py
+
 
 Combobox
 --------
 
-A **combobox** combines a list of choices with an entry. The user can select from the list, but he can also enter directly a value.
-
-.. automodule:: intro9
-   :members:
-
-This is a screen capture of the above program.
+A **combobox** combines a list of choices with an entry. 
+The user can select from the list, but he can also enter directly a value.
 
 .. image:: intro9.png
 
+:download:`intro9.py<intro9.py>`
 
+.. literalinclude:: intro9.py
