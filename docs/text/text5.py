@@ -1,3 +1,4 @@
+# Add custom styles
 from tklib import *
 
 str = """Up until now, we've just dealt with plain text. 
@@ -20,7 +21,7 @@ def big():
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Formatting with tags", font="Arial 18")
 
         App.text = Text(str, height=10)
@@ -35,5 +36,4 @@ class Demo(App):
         Button('Highlight', highlight)
         Button('Big', big)
         
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

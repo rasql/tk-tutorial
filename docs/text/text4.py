@@ -14,7 +14,7 @@ they'll be automatically created the first time the tag name is used.
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Formatting with tags", font="Arial 18")
 
         App.text = Text(str, height=20)
@@ -40,5 +40,4 @@ class Demo(App):
         
         App.text.tag_bind('big', '<1>', App.m.popup)
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

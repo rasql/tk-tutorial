@@ -1,6 +1,4 @@
 """Canvas with a scrollbar."""
-
-import tkinter.ttk as ttk
 from tklib import *
 
 class Canvas(tk.Canvas):
@@ -9,7 +7,7 @@ class Canvas(tk.Canvas):
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         text = 'hello ' * 100
         Label("Canvas with scrollbars", font="Arial 18")
         h = 80
@@ -26,5 +24,4 @@ class Demo(App):
         Label('scroll=xy')
         Canvas(height=h, scroll='xy')
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

@@ -1,6 +1,4 @@
-"""Display tk Text."""
-
-import tkinter as tk
+"""Display a Treeview()."""
 from tklib import *
 
 def itemClicked(event):
@@ -8,7 +6,7 @@ def itemClicked(event):
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label('Treeview Demo', font='Arial 24')
 
         tree = Treeview()
@@ -41,5 +39,4 @@ class Demo(App):
         tree.tag_configure('simple', foreground='red')
         tree.tag_bind('ttk', '<1>', itemClicked)  # the item clicked can be found via tree.focus()
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

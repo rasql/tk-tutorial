@@ -3,7 +3,7 @@ from tklib import *
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Canvas configuration", font="Arial 24")
 
         App.stack[-1]=Frame()
@@ -19,5 +19,4 @@ class Demo(App):
             if len(v)>2:
                 tree.insert('', 'end', text=k, values=v[-1])
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

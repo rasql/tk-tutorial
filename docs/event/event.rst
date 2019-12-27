@@ -3,12 +3,11 @@ Events
 
 Tk events can come from various sources including:
 
-* mouse button presses
-* mouse mouvement
+* mouse (move, button)
 * keyboard
-* entering/leaving widgets
+* widget (enter/leave)
 
-Each widget can bind functions and methods to events::
+Each widget can bind a **handler** method to an event::
 
     widget.bind(event, handler)
 
@@ -32,11 +31,14 @@ Here is an exemple which prints mouse **Button** and **Motion** events to the st
             """Callback function."""
             App.status['text'] = event    
 
-.. autoclass:: event1.Demo
 
 This is a screen capture of the above program.
 
 .. image:: event1.png
+
+:download:`event1.py<event1.py>`
+
+.. literalinclude:: event1.py
 
 
 Write events to a Text widget
@@ -49,15 +51,18 @@ just by changing the callback function::
         """Callback function."""
         App.txt.insert('end', str(event) + '\n') 
 
-.. autoclass:: event2.Demo
 
 This is a screen capture of the above program.
 
 .. image:: event2.png
 
+:download:`event2.py<event2.py>`
 
-Detecting Enter, Leave and Return events
-----------------------------------------
+.. literalinclude:: event2.py
+
+
+Enter, Leave and Return events
+------------------------------
 
 The following program detects these events::
 
@@ -66,8 +71,11 @@ The following program detects these events::
     App.root.bind('<Return>', self.cb)
     App.root.bind('<Configure>', self.cb)
 
-.. autoclass:: event3.Demo
 
 This is a screen capture of the above program.
 
 .. image:: event3.png
+
+:download:`event3.py<event3.py>`
+
+.. literalinclude:: event3.py

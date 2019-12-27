@@ -15,5 +15,4 @@ class Demo(App):
         c.create_text(300, 150, text="Python", font='Arial 48')
         c.create_text(300, 250, text="Canvas", font='Zapfino 72')
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

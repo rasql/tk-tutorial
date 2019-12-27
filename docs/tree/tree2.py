@@ -1,11 +1,9 @@
-"""Display tk Text."""
-
-import tkinter as tk
+"""Display a tk Treeview."""
 from tklib import *
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label('Treeview', font='Arial 24')
 
         items = dir(tk)
@@ -24,5 +22,4 @@ class Demo(App):
         items = dir()
         Treeview(items).grid(row=1, column=1)
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

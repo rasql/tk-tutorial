@@ -18,22 +18,41 @@ on both sides.
 * The scrollbar calls the widget's **xview** and **yview** methods.
 * The widget has **[x/y]scrollcommmand** options to update the scrollbar
 
-.. automodule:: scrollbar1
-   :members:
-
-This is a screen capture of the above program.
-
 .. image:: scrollbar1.png
+
+.. literalinclude:: scrollbar1.py
+
+:download:`scrollbar1.py<scrollbar1.py>`
+
+
+
+Listbox with scrollbars
+-----------------------
+
+.. image:: scrollbar2.png
+
+.. literalinclude:: scrollbar2.py
+
+:download:`scrollbar2.py<scrollbar2.py>`
+
 
 Text with scrollbars
 --------------------
 
-.. automodule:: scrollbar2
-   :members:
+.. image:: scrollbar3.png
 
-This is a screen capture of the above program.
+.. literalinclude:: scrollbar3.py
 
-.. image:: scrollbar2.png
+:download:`scrollbar3.py<scrollbar3.py>`
+
+Canvas with scrollbars
+----------------------
+
+.. image:: scrollbar5.png
+
+.. literalinclude:: scrollbar5.py
+
+:download:`scrollbar5.py<scrollbar5.py>`
 
 
 Sources

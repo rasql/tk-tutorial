@@ -3,7 +3,7 @@ from tklib import *
 class Demo(App):
     """Write Enter, Leave and Return events to a Text widget."""
     def __init__(self):
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Enter, Leave and Return events", font="Arial 24")
         
         App.txt = Text()

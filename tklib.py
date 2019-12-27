@@ -3,6 +3,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 
 from PIL import Image, ImageTk, ImageGrab
+import random
 
 class Callback:
     """Provide a callback function."""

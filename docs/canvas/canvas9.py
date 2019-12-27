@@ -1,9 +1,9 @@
-"""Draw lines."""
+"""Draw shapes with the mouse."""
 from tklib import *
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Drawing shapes", font="Arial 24")
 
         Spinbox('width', 'App.c["width"]=self.val.get()', inc=50, to=1000)
@@ -27,5 +27,4 @@ class Demo(App):
 
         App.c.create_rectangle(20, 20, 150, 100)
     
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

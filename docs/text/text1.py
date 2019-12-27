@@ -1,10 +1,9 @@
 """Display tk Text."""
-
 from tklib import *
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Text widget", font="Arial 18")
 
         Label('2 lines')
@@ -14,5 +13,4 @@ class Demo(App):
         text = Text(height=10)
         text.insert('1.0', 'Add some text at the beginning of the Text widget.')
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

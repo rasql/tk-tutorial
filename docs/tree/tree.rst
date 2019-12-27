@@ -71,64 +71,65 @@ Define a callback function for the tag::
     def itemClicked(event):
         print(event)
 
-.. automodule:: tree1
-   :members:
-
-This is the result:
 
 .. image:: tree1.png
+
+.. literalinclude:: tree1.py
+
+:download:`tree1.py<tree1.py>`
+
 
 
 Two treeviews next to each other
 --------------------------------
 
-.. automodule:: tree2
-   :members:
-
-This is the result:
 
 .. image:: tree2.png
+
+.. literalinclude:: tree2.py
+
+:download:`tree2.py<tree2.py>`
 
 
 Display a 2D table
 ------------------
 
-.. automodule:: tree4
-   :members:
-
-This is the result:
 
 .. image:: tree4.png
+
+.. literalinclude:: tree4.py
+
+:download:`tree4.py<tree4.py>`
 
 
 Insert items into a treeview
 ----------------------------
 
-.. automodule:: tree5
-   :members:
-
-This is the result:
 
 .. image:: tree5.png
+
+.. literalinclude:: tree5.py
+
+:download:`tree5.py<tree5.py>`
 
 
 Add items to specific column
 ----------------------------
 
-.. automodule:: tree6
-   :members:
-
-This is the result:
 
 .. image:: tree6.png
+
+.. literalinclude:: tree6.py
+
+:download:`tree6.py<tree6.py>`
 
 
 Customizing the treeview widget
 -------------------------------
 
-.. automodule:: tree7
-   :members:
-
-This is the result:
 
 .. image:: tree7.png
+
+.. literalinclude:: tree7.py
+
+:download:`tree7.py<tree7.py>`

@@ -1,10 +1,9 @@
 """Place random circles on the canvas."""
 from tklib import *
-import random
 
 class Demo(App):
     def __init__(self): 
-        super(Demo, self).__init__()
+        super().__init__()
         Label("Random Circles", font="Arial 24")
 
         w, h = 600, 300
@@ -16,5 +15,4 @@ class Demo(App):
             r = random.randint(10, 100)
             c.create_oval(x, y, x+r, y+r)
 
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()

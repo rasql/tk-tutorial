@@ -1,5 +1,4 @@
 """Search in text."""
-
 from tklib import *
 
 str = """Up until now, we've just dealt with plain text. 
@@ -27,7 +26,6 @@ def search(event=None):
         App.text.tag_add('highlight', pos, pos+'+1c')
         start = pos + '+1c'
 
-
 class Demo(App):
     def __init__(self): 
         super(Demo, self).__init__()
@@ -38,5 +36,4 @@ class Demo(App):
 
         App.re = Entry('search', search)
              
-if __name__ == '__main__':
-    Demo().run()
+Demo().run()
