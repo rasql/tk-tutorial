@@ -82,6 +82,20 @@ Tk provides multiple standard dialogs for
 
 :download:`window2.py<window2.py>`
 
+Open dialog
+-----------
+
+.. image:: dialog1.png
+
+Pressing the **Open...** button opens a standard *open file* dialog 
+and returns a path or an empty string (if cancelled).
+
+.. image:: dialog_open.png
+
+.. literalinclude:: dialog1.py
+
+:download:`dialog1.py<dialog1.py>`
+
 
 Alert and confirmation dialogs
 ------------------------------

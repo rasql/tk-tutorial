@@ -14,7 +14,7 @@ class Demo(App):
         Button('Save…', 'App.save["text"] = tk.filedialog.asksaveasfilename()')
         App.save = Label('File')
 
-        Button('Directory', 'App.dir["text"] = tk.filedialog.askdirectory()')
+        Button('Directory…', 'App.dir["text"] = tk.filedialog.askdirectory()')
         App.dir = Label('Directory')
 
         Button('Select color…', 'App.col["text"] = tk.colorchooser.askcolor()')

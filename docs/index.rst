@@ -11,6 +11,7 @@ Welcome to this Tk tutorial!
    :caption: Contents:
 
    intro/intro
+   button/button
    basic/basic
    concept/concept
    event/event

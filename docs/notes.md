@@ -1,5 +1,16 @@
-To do
+Notes
 =====
+
+tutorial concepts:
+
+* small examples (10-15 lines)
+* visual illustration with screen captures
+* visualization (frames, events, coordinates)
+
+
+
+To do
+-----
 
 Inputs (Entry, Spinbox, Combobox, Scale)
 ----------------------------------------
@@ -39,3 +50,9 @@ Simple apps
 * Media player
 * Graphics editor
 * IDE (like Thonny or IDLE)
+
+
+Resources
+---------
+
+https://tkdocs.com/tutorial/intro.html 

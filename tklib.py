@@ -4,6 +4,7 @@ import re
 import math
 import tkinter as tk
 import tkinter.ttk as ttk
+from tkinter import filedialog, colorchooser
 
 from PIL import Image, ImageTk, ImageGrab
 import random
@@ -215,16 +216,16 @@ class Button(ttk.Button, Callback):
 
 
 class Radiobutton:
-    """Create a Radiobutton object."""
+    """Create a list-based Radiobutton object."""
 
-    def __init__(self, items='Radio', cmd='', **kwargs):
+    def __init__(self, items='Radiobutton', cmd='', val=0, **kwargs):
         self.items = items.split(';')
         self.cmd = cmd
         self.val = tk.IntVar()
-        self.val.set(0)
-        for i, item in enumerate(items.split(';')):
-            r = ttk.Radiobutton(
-                App.stack[-1], text=item, variable=self.val, value=i, command=self.cb, **kwargs)
+        self.val.set(val)
+        for i, item in enumerate(self.items):
+            r = ttk.Radiobutton(App.stack[-1], text=item, variable=self.val,
+                                value=i, command=self.cb, **kwargs)
             r.grid(sticky='w')
 
     def cb(self):
@@ -234,9 +235,9 @@ class Radiobutton:
 
 
 class Checkbox:
-    """Create a Checkbox object."""
+    """Create a list-based Checkbox object."""
 
-    def __init__(self, items='Check', cmd='', **kwargs):
+    def __init__(self, items='Checkbox', cmd='', **kwargs):
         self.items = items.split(';')
         self.val = []
         self.cmd = cmd
@@ -632,7 +633,7 @@ class App(tk.Frame):
 
     """Define the application base class."""
 
-    def __init__(self):
+    def __init__(self, title='Tk'):
         root = tk.Tk()
         root.option_add('*tearOff', False)
 
@@ -644,7 +645,7 @@ class App(tk.Frame):
         App.menus = [menubar]
 
         """Define the Tk() root widget and a background frame."""
-        Window(top=App.root)
+        Window(top=App.root, title=title)
         self.top = root
         App.root.bind('<Key>', self.callback)
         App.root.bind('<Escape>', quit)
