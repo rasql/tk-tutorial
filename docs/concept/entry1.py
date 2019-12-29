@@ -9,7 +9,7 @@ class Demo(App):
         App.l = Label("Get widget value", font="Arial 18")
 
         Button('My Button', 'print(self["text"])')
-        Checkbox('A;B;C', 'print(self.selection)')
+        Checkbutton('A;B;C', 'print(self.selection)')
         Combobox('Combobox', '1;2;5;10', 'print(self.val.get())')
         Entry('Entry', 'print(self.get())')
         Label('My Label')

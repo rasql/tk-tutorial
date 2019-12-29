@@ -77,7 +77,7 @@ class Combobox(ttk.Combobox, Callback):
         exec(self.cmd)
 
 
-class Entry(ttk.Entry, Callback):
+class Entry(ttk.Entry):
     """Create an Entry object with a command string."""
 
     def __init__(self, label='', cmd='', val=None,  **kwargs):
@@ -101,6 +101,10 @@ class Entry(ttk.Entry, Callback):
         if isinstance(cmd, str):
             cmd = self.cb
         self.bind('<Return>', cmd)
+
+    def cb(self, event=None):
+        """Execute the cmd string in the widget context."""
+        exec(self.cmd)
 
 
 class Scale(ttk.Scale, Callback):
@@ -234,21 +238,21 @@ class Radiobutton:
         exec(self.cmd)
 
 
-class Checkbox:
-    """Create a list-based Checkbox object."""
+class Checkbutton:
+    """Create a list-based Checkbutton object."""
 
-    def __init__(self, items='Checkbox', cmd='', **kwargs):
+    def __init__(self, items='Checkbutton', cmd='', **kwargs):
         self.items = items.split(';')
         self.val = []
         self.cmd = cmd
-        for i, item in enumerate(items.split(';')):
+        for i, item in enumerate(self.items):
             self.val.append(tk.IntVar())
             c = ttk.Checkbutton(
                 App.stack[-1], text=item, command=self.cb, variable=self.val[i], **kwargs)
             c.grid(sticky='w')
 
     def cb(self):
-        """Evaluate the cmd string in the Checkbox context."""
+        """Evaluate the cmd string in the Checkutton context."""
         self.selection = []
         for i, item in enumerate(self.items):
             if self.val[i].get() == 1:

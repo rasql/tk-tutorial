@@ -15,7 +15,7 @@ from the **tk** module and the newer themed  **ttk** module:
 * Frame
 * Label
 * Button
-* Checkbox
+* Checkbutton
 * Radiobutton
 * Entry
 * Combobox
@@ -39,7 +39,7 @@ When we import ``tklib`` we import automatically ``tk`` and ``tkk``::
 
 This is what we get when we print ``dir()``::
 
-    ['App', 'Button', 'Callback', 'Canvas', 'Checkbox', 'Combobox', 
+    ['App', 'Button', 'Callback', 'Canvas', 'Checkbutton', 'Combobox', 
     'ContextMenu', 'Entry', 'Frame', 'Image', 'ImageGrab', 'ImageTk', 
     'Inspector', 'Item', 'Label', 'Labelframe', 'Listbox', 'ListboxSearch', 
     'Menu', 'Notebook', 'Panedwindow', 'Radiobutton', 'Scale', 'Scrollable', 
@@ -95,7 +95,7 @@ widgets are embedded. Frames can be nested::
     Frame()
     Spinbox()
     Combobox()
-    Checkbox()
+    Checkbutton()
     Radiobutton()
 
     root.mainloop()

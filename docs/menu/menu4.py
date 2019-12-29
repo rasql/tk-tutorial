@@ -4,9 +4,9 @@ from tklib import *
 class Demo(App):
     def __init__(self):
         super().__init__()
-        Label("Checkboxes and radiobuttons.", font="Arial 24")
+        Label("Checkbuttones and radiobuttons.", font="Arial 24")
 
-        Menu('Checkbox')
+        Menu('Checkbutton')
         for i in range(5):
             Item('*Item {}'.format(i))
 

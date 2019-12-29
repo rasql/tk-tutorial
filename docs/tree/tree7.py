@@ -17,7 +17,7 @@ class Demo(App):
         Combobox('selectmode=', 'browse;extended;none', 'App.tree["selectmode"]=self.val.get()')
         Button('show tree', "App.tree['show']='tree'")
         Button('show headings', "App.tree['show']='headings'")
-        Checkbox('tree;headings')
+        Checkbutton('tree;headings')
         
         for i in range(2):
             App.tree.column(i, width=100, anchor='w')

@@ -221,64 +221,129 @@ Pressing the 3 buttons one after another writes this to the console::
 :download:`button3.py<button3.py>`
 
 
-Radiobutton
+Checkbutton
 -----------
 
-A **radiobutton** lets you choose among a number of mutually
-exclusive choices. Radiobuttons are used together in a set and
-are a good option when the number is fairly small (about 3-5).
+A **checkbutton** is like a regular button,
+with a label and a callback function,
+but it also holds and displays a binary state.
 
-.. image:: radio1.png
+The ``Checkbutton`` object has the following attributes:
 
-Each ``Radiobutton`` object has a
+* **parent** - the parent object
+* **text** - the label to display
+* **command** - the callback function
+* **variable** - the variable holding the state value
+* **onvalue** - the value when in the ON state
+* **offvalue** - the value when in the OFF state
 
-* parent
-* text to display
-* common variable (StringVar, IntVar)
-* specific value
-* shared callback function
+Here is an example of 3 checkbuttons
 
-.. literalinclude:: radio1.py
+.. image:: check1.png
 
-:download:`radio1.py<radio1.py>`
+The callback function ``cb`` writes this to the console::
 
-The radiobutton part consists of 7 lines and has a lot of repetitions such as:
+    --- languages ---
+    English 1
+    German 0
+    French fluent
 
-* the beginning ``tk.Radiobuttion(root, text=``
-* the shared variable ``variable=lang``
-* the common callback function ``command=cb``
+We notice that the default offvalue is ``0`` and the default onvalue is ``1``.
+In our case:
 
-A better Radiobutton
---------------------
+* var0 toggles between ``0`` and ``1``
+* var1 toggles between ``barely`` and ``1``
+* var2 toggles between ``0`` and ``fluent``
 
-Now let's redefine the ``Radiobutton`` class to make everything in just one line::
+.. literalinclude:: check1.py
 
-    Radiobutton('English;German;French', 'print(self.item)')
+:download:`check1.py<check1.py>`
 
-* the items are declared as a semicolon-separated list
-* the command is a string to be evaluated in the Radiobutton environment
-* the selected value is available in ``self.item``
-* the selection index is available in ``self.val`` (could be used as a list index)
+Now let us rewrite this program by using lists.
 
-.. literalinclude:: radio2.py
+.. literalinclude:: check2.py
 
-:download:`radio2.py<radio2.py>`
+:download:`check2.py<check2.py>`
+
+A better Checkbutton class
+--------------------------
+
+It's time now to define a new and better ``Checkbutton`` class which can do everything in one line::
+
+    Checkbutton('English;German;French', 'print(self.selection)')
+
+* the items are declared as a **semicolon-separated list**
+* the command is a string to be evaluated in the Checkbutton environment
+* the items are available in ``self.items``
+* the selected items are available in ``self.selection``
+* the selection states are available in ``self.val``
+
+This is the result written to the console for three consecutive selections::
+
+    ['French']
+    ['German', 'French']
+    ['English', 'German', 'French']
+
+.. literalinclude:: check3.py
+
+:download:`check3.py<check3.py>`
 
 Now let's see how this class is defined
 
 .. literalinclude:: tklib.py
-   :pyobject: Radiobutton
+   :pyobject: Checkbutton
 
-The item string is split at the semicolons into a regular list.
-The common variable is a ``IntVar`` object.
-Each radiobutton has an integer value (0, 1, 2, ...).
-The callback function finds the selected item by looking up this integer value in the items list.
+Entry
+-----
 
-Let's look at another exemple. 
-This time we add another language (Italian) and initialize the default button to 2 (French).
+An **entry** widget presents the user an empty field
+where he can enter a text value.
 
-.. image:: radio3.png
+.. image:: entry1.png
 
-.. literalinclude:: radio3.py
+Each ``Entry`` object has these options:
 
-:download:`radio3.py<radio3.py>`
+* **parent** - the parent object
+* **textvariable** - the text variable to hold the entered string
+* **width** - the numbers of characters
+* **show** - to indicate ``*`` for passwords
+
+They do not have a ``text`` or ``image`` option.
+You have to use a label widget instead.
+
+.. literalinclude:: entry1.py
+
+:download:`entry1.py<entry1.py>`
+
+
+A better Entry class
+--------------------
+
+It's time now to define a new and better ``Entry`` class
+which can do everything in one line::
+
+    Entry('First name:', 'print(self.var.get())')
+
+This new class has the attributes:
+
+* **label** - to automatically add label in front of the entry field
+* **cmd** - to execute a command string when hitting the Return key
+* **val** - a default value
+
+.. image:: entry2.png
+
+The command function evaluates the expression entered and
+displays the result in the following label widget::
+
+    Entry('Enter expression', 'App.res["text"] = eval(self.var.get())')
+    App.res = Label('Result')
+
+.. literalinclude:: entry2.py
+
+:download:`entry2.py<entry2.py>`
+
+Now let's see how this class is defined
+
+.. literalinclude:: tklib.py
+   :pyobject: Entry
+

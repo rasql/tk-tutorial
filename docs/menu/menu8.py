@@ -11,7 +11,7 @@ class Demo(App):
         Item('Label', 'Label()', 'Command-l')
         Item('Entry', 'Entry()', 'Command-e')
         Item('Radiobutton', 'Radiobutton()', 'Command-r')
-        Item('Checkbox', 'Checkbox()', 'Command-k')
+        Item('Checkbutton', 'Checkbutton()', 'Command-k')
         Item('Canvas', 'Canvas()', 'Command-c')
         Item('Listbox', 'Listbox(height=5)', 'Command-i')
         Item('Scale', 'Scale()', 'Command-s')

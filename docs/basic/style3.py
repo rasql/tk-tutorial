@@ -10,7 +10,7 @@ class Demo(App):
         Label('Widget style', font='Arial 24')
 
         Label('widget state')
-        c = Checkbox('active;disabled;focus;pressed;selected;'
+        c = Checkbutton('active;disabled;focus;pressed;selected;'
             'background;readonly;alternate;invalid;hover')
 
         # tk.Frame(App.stack[-1], width=100, height=100, borderwidth=1, relief='solid').grid()

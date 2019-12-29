@@ -1,12 +1,7 @@
-"""Create radio buttons."""
 from tklib import *
+app = App('Radio buttons')
 
-class Demo(App):
-    def __init__(self):
-        super().__init__()
-        Label('Radiobutton demo', font='Arial 24')
+Label('Select your favorite programming language')
+Radiobutton('Python;Perl;Ruby;Java;C++', 'print(self.item)')
 
-        Label('Select your favorite programming language')
-        Radiobutton('Python;Perl;Ruby;Java;C++', 'print(self.item)')
-    
-Demo().run()
+app.run()

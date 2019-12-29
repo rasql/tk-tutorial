@@ -16,7 +16,7 @@ class Demo(App):
         App.re.bind('<Key>', self.recompile)
         App.status = Label('Status')
 
-        Checkbox('IGNORECASE;MULITILINE;DOTALL;VERBOSE')
+        Checkbutton('IGNORECASE;MULITILINE;DOTALL;VERBOSE')
 
         Label('Enter a string to search')
         Radiobutton('Highlight first;Highligth all')

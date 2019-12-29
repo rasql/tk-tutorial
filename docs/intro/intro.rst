@@ -185,16 +185,3 @@ where he can enter a string value.
 .. literalinclude:: intro8.py
 
 :download:`intro8.py<intro8.py>`
-
-
-Combobox
---------
-
-A **combobox** combines a list of choices with an entry. 
-The user can select from the list, but he can also enter directly a value.
-
-.. image:: intro9.png
-
-.. literalinclude:: intro9.py
-
-:download:`intro9.py<intro9.py>`

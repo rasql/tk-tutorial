@@ -104,7 +104,7 @@ This is the ``Item`` class definition.
 
 :download:`menu6.py<menu6.py>`
 6
-Checkboxes and radiobuttons
+Checkbuttones and radiobuttons
 ---------------------------
 
 Items can be configured as checkboxes or radiobuttons. 
@@ -130,7 +130,7 @@ is attached to a specific widget. When the widget is clicked, a callback functio
 is called.
 
 The ``Menu.post()`` method is used to open the context menu at the current 
-cursor position::
+cursor position:
 
 .. literalinclude:: tklib.py
    :pyobject: ContextMenu
@@ -204,7 +204,7 @@ added to the current window::
     Item('Label', 'Label()', 'Command-l')
     Item('Entry', 'Entry()', 'Command-e')
     Item('Radiobutton', 'Radiobutton()', 'Command-r')
-    Item('Checkbox', 'Checkbox()', 'Command-k')
+    Item('Checkbutton', 'Checkbutton()', 'Command-k')
     Item('Canvas', 'Canvas()', 'Command-c')
     Item('Listbox', 'Listbox(height=5)', 'Command-i')
     Item('Scale', 'Scale()', 'Command-s')

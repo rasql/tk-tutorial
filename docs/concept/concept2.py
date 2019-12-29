@@ -11,7 +11,7 @@ Scale()
 Frame()
 Spinbox()
 Combobox()
-Checkbox()
+Checkbutton()
 Radiobutton()
 
 root.mainloop()

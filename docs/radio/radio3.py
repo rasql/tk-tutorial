@@ -1,4 +1,4 @@
-"""Create radio buttons."""
+"""Create radiobuttons."""
 from tklib import *
 
 app = App()
