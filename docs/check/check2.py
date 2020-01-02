@@ -3,10 +3,7 @@ import tkinter as tk
 root = tk.Tk()
 
 texts = ['English', 'German', 'French']
-vars = [tk.StringVar(), tk.StringVar(), tk.StringVar()]
-
-for var in vars:
-    var.set('0')
+vars = [tk.StringVar(value='0'), tk.StringVar(value='0'), tk.StringVar(value='0')]
 
 def cb():
     print('--- languages ---')

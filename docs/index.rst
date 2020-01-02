@@ -19,7 +19,8 @@ In this tutorial I will teach you to
    intro/intro
    button/button
    radio/radio
-   combo/combo
+   check/check
+   entry/entry
    basic/basic
    concept/concept
    event/event

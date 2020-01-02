@@ -206,17 +206,18 @@ class Label(ttk.Label):
         self.grid()
 
 
-class Button(ttk.Button, Callback):
-    """Create a Button object."""
-
+class Button(ttk.Button):
     def __init__(self, text='Button', cmd='', **kwargs):
         self.cmd = cmd
-        if isinstance(cmd, str):
-            cmd = self.cb
-        super(Button, self).__init__(
-            App.stack[-1], text=text, command=cmd, **kwargs)
+        super().__init__(App.stack[-1], text=text, command=self.cb, **kwargs)
         self.bind('<Return>', self.cb)
         self.grid()
+    
+    def cb(self, event=None):
+        if isinstance(self.cmd, str):
+            exec(self.cmd)
+        else:
+            self.cmd()
 
 
 class Radiobutton:
@@ -598,14 +599,15 @@ class Window:
         frame = ttk.Frame(top, width=300, height=200, padding=(5, 10))
         frame.grid(sticky='nswe')
 
-        ttk.Separator(top).grid(sticky='we')
-        self.status = ttk.Label(top, text='Statusbar', name='status')
-        self.status.grid(sticky='we')
-
         App.stack.append(frame)
         App.win = top
         App.menus = [tk.Menu(App.win)]
         App.win['menu'] = App.menus[0]
+
+    def add_statusbar(self):
+        ttk.Separator(top).grid(sticky='we')
+        self.status = ttk.Label(top, text='Statusbar', name='status')
+        self.status.grid(sticky='we')
 
     def get_img(self, event=None):
         """Save a screen capture to the current folder."""

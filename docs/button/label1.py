@@ -1,8 +1,7 @@
 import tkinter as tk
 
 root = tk.Tk()
-str = tk.StringVar()
-str.set('dynamic text')
+str = tk.StringVar(value='dynamic text')
 
 tk.Label(root, text='static text').pack()
 tk.Label(root, textvariable=str).pack()

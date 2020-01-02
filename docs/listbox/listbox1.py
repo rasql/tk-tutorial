@@ -1,26 +1,26 @@
-"""Place a listbox."""
 from tklib import *
 import os
 
-class Demo(App):
-    def __init__(self): 
-        super().__init__()
-        Label("Listbox browse", font="Arial 18")
+app = App('Listbox with insert')
 
-        App.i = Spinbox('index')
-        Entry('value', 'App.lb.insert(App.i.val.get(), self.get())')
-        Button('Insert')
+def insert():
+    i = int(index.var.get())
+    print(i)
+    print(value.var.get())
 
-        L = dir(os)
-        print(len(L))
 
-        print(len(L), L)
-        App.lb = Listbox(L)
-        App.lb.grid()
+Label("Listbox browse", font="Arial 18")
 
-        Button('coloring()', 'App.lb.coloring()')
-        Button('delete()', 'App.lb.delete(0, "end")')
+index = Spinbox('index', 5)
+value = Entry('value', 'App.lb.insert(App.i.val.get(), self.get())')
+Button('Insert', insert)
 
-        Button('Set', 'App.var.set(list(range(100)))')
+listbox = Listbox(dir(os))
+listbox.grid()
+
+Button('coloring()', 'App.lb.coloring()')
+Button('delete()', 'App.lb.delete(0, "end")')
+
+Button('Set', 'App.var.set(list(range(100)))')
     
-Demo().run()
+app.run()

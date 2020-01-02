@@ -7,6 +7,27 @@ tutorial concepts:
 * visual illustration with screen captures
 * visualization (frames, events, coordinates)
 
+Widgets
+-------
+Frame
+Label
+
+Button
+Checkbutton
+Radiobutton
+
+Entry
+Combobox
+Spinbox
+Slider
+
+Text
+Canvas
+Scrollbar
+
+Listbox
+Treeview
+
 
 
 To do
