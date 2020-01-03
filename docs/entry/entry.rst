@@ -1,12 +1,18 @@
 Entry, Combox, Spinbox
 =========================
 
-Several widgets allow to enter text or numerical information:
+Several widgets allow to enter text or numerical information in a single field.
 
 * the **Entry** widgets allows to type text
-* the **Combobox** allows to either type text or select from a list
-* the **Spinbox**  allows to select from a range
+* the **Combobox** allows to either type text or select text from a drop-down list
+* the **Spinbox**  allows to select from a numerical range or from a list 
 * the **Scale** allows to use a slider to choose a value
+
+.. image:: entry0.png
+
+:download:`entry0.py<entry0.py>`
+
+Since these widgets are very similar, we treat them in the same section.
 
 Entry widget
 ------------

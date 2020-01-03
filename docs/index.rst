@@ -21,6 +21,7 @@ In this tutorial I will teach you to
    radio/radio
    check/check
    entry/entry
+   grid/grid
    basic/basic
    concept/concept
    event/event

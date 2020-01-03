@@ -17,20 +17,6 @@ class Callback:
         """Execute the cmd string in the widget context."""
         exec(self.cmd)
 
-    def add_label(self, w, label, **kwargs):
-        """Add a label in front of the widget and put a frame around."""
-        if label == '':
-            # super(w, self).__init__(App.stack[-1], **kwargs)
-            # self = w(App.stack[-1], **kwargs)
-            w.__init__(self, App.stack[-1], **kwargs)
-            self.grid()
-        else:
-            fr = ttk.Frame(App.stack[-1])
-            ttk.Label(fr, text=label).grid()
-            self = w(fr,  **kwargs)
-            self.grid(row=0, column=1)
-            fr.grid(sticky='e')
-
     def add_command(self, cmd):
         """Add the function, or execute string via callback."""
         self.cmd = cmd
@@ -639,10 +625,11 @@ class App(tk.Frame):
 
     """Define the application base class."""
 
-    def __init__(self, title='Tk'):
+    def __init__(self, title='Tk', debug=False):
         root = tk.Tk()
         root.option_add('*tearOff', False)
 
+        App.debug = debug
         App.root = root
         App.stack = [root]
 
