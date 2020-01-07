@@ -23,7 +23,6 @@ In this tutorial I will teach you to
    entry/entry
    grid/grid
    basic/basic
-   concept/concept
    event/event
    listbox/listbox
    menu/menu

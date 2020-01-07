@@ -1,8 +1,5 @@
-"""Display a file Browser."""
-
-import os
-import tkinter as tk
 from tklib import *
+app = App('File browser')
 
 class FileBrowser(Treeview):
     """Create a file browser."""
@@ -35,16 +32,9 @@ class FileBrowser(Treeview):
         App.text.delete('1.0', 'end')
         App.text.insert('1.0', s)
 
-class Demo(App):
-    def __init__(self): 
-        super().__init__()
-        Label('File browser', font='Arial 24')
-        
-        FileBrowser()
-        App.text = Text()
-        App.text.grid(row=2, column=1)
+FileBrowser()
+App.text = Text(height=28)
+App.text.grid(row=1, column=1)
+Combobox('wrap', 'char;word;none', 'App.text["wrap"]=self.var.get()')
 
-        Combobox('wrap', 'char;word;none', 'App.text["wrap"]=self.val.get()')
-
-if __name__ == '__main__':
-    Demo().run()
+app.run()

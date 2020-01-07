@@ -185,3 +185,54 @@ where he can enter a string value.
 .. literalinclude:: intro8.py
 
 :download:`intro8.py<intro8.py>`
+
+
+The ``tklib`` module
+--------------------
+
+In the following section we are going to redefine the ``tk`` and ``ttk`` objects.
+To make it easier to use them, we follow these design principles:
+
+* we keep the excact same class names
+* the parent object is chosen automatically
+* all keyword arguments are forwarded
+
+The first widget to consider is the ``Label`` which just places static text. 
+Where it makes sense, a label will be combined with a button or entry widget.
+
+There are three types of buttons:
+
+* Button
+* Checkbutton
+* Radiobutton
+
+There are four types of entry widgets for text or numbers, 
+which allow to input text with the keyboard or making a choice uint the mouse:
+
+* Entry
+* Combobox
+* Spinbox
+* Scale
+
+Then there are the two complex display widgets for text and graphics:
+
+* Text
+* Canvas
+
+These two widgets present lists:
+
+* Listbox
+* Treeview
+
+Finally these widgets are helper widgets:
+
+* Frame
+* Separator
+* Window
+* Scrollbar
+* SizeGrip
+* Progressbar
+* Menu
+* ContextMenu
+* Panedwindow
+

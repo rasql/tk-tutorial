@@ -1,83 +1,102 @@
-Tree
-====
+Treeview
+========
 
-A **treeview** widget can display a hierarchy of items. 
-The parent node is ``''`` and is not displayed. Within a node the items are indexed:
-0 being the first item, ``'end'`` representing the position after the last item.
+A **treeview** widget can display a hierarchy of items.
+The items are organized in the form of a tree.
+The parent node is ``''`` and is not displayed.
+Within a node the items are indexed:
+0 being the first item, ``'end'`` representing the position
+after the last item.
 
 To insert an item to t treeview use the function::
 
     tree.insert(node, index, name, text='Label')
 
-Overview
---------
+The first example creates a treeview, adds an item at position 0,
+and another item at position ``end``.
+The id of the third item is assigned to a local variable in order
+to use it as a node for creating to sub-items.
 
-Create a new ``Treeview`` object and assign it to a local variable::
+.. image:: tree0.png
 
-    tree = Treeview()
+.. literalinclude:: tree0.py
 
-Inserte a new item inside root (``''``) at index ``'end'``, 
-give a name to the node (widgets)and add a label to it::
+:download:`tree0.py<tree0.py>`
 
-    tree.insert('', 'end', 'widgets', text='Widget Tour')
+Multiple columns
+----------------
 
-Insert another item, but this time at index 0::
+The option ``tree['columns']`` adds more columns::
 
-    tree.insert('', 0, 'gallery', text='Applications')
+    tree['columns'] = ('size', 'modified')
 
-Assign the item id to a local variable for later use::
-
-    id = tree.insert('', 'end', text='Tutorial')
-
-Inserte more items under existing nodes::
-
-    tree.insert('widgets', 'end', text='Canvas')
-    tree.insert(id, 'end', text='Tree')
-
-Add three columns and customize them::
-
-    tree['columns'] = ('size', 'modified', 'owner')
-    tree.column('size', width=50, anchor='center')
-    tree.heading('size', text='Size')
-    tree.heading('modified', text='Modified')
-
-Add a specific value (12KB) at item (widgets) and column (size) to the treeview::
+The width, alignment and label of a column can further be specified.
+To insert values to the new columns use the method ``set``::
 
     tree.set('widgets', 'size', '12KB')
+    tree.set('widgets', 'modified', 'Last week')
 
-Get a specific value (row, column)::
+To insert all values at creation use the option ``values``::
 
-    size = tree.set('widgets', 'size')
+    tree.insert('', 'end', text='Listbox', values=('15KB Yesterday'))
 
-Insert items with multiple values::
+.. image:: tree1_col.png
 
-    tree.insert('', 'end', text='Listbox', values=('15KB Yesterday mark'))
-    tree.insert('', 'end', text='Canvas', values=('25KB Today raph'))
+.. literalinclude:: tree1_col.py
 
-Add two tags (ttk, simple) to a new item::
-    tree.insert(id, 'end', text='button', tags=('ttk', 'simple'))
+:download:`tree1_col.py<tree1_col.py>`
+
+
+Configure style
+---------------
+
+Like the text and canvas widgets, the ``Treeview`` widget uses **tags** to
+modify the appearance of lines. Tags are simply a list of strings, such as::
+
+    tree.insert('', 'end', text='Item 4', tags=('fg', 'bg'))
 
 Configure the tag with background and foreground color::
 
-    tree.tag_configure('ttk', background='yellow')
-    tree.tag_configure('simple', foreground='red')
+    tree.tag_configure('bg', background='yellow')
+    tree.tag_configure('fg', foreground='red')
 
-Add a mouse-click binding to the tag::
+.. image:: tree1_tag.png
 
-    tree.tag_bind('ttk', '<1>', itemClicked)  # the item clicked can be found via tree.focus()
+.. literalinclude:: tree1_tag.py
 
-Define a callback function for the tag::
-
-    def itemClicked(event):
-        print(event)
+:download:`tree1_tag.py<tree1_tag.py>`
 
 
-.. image:: tree1.png
+Bind to events
+--------------
 
-.. literalinclude:: tree1.py
+Tags are also used to bind lines to events.
+This adds a callback to the button click::
 
-:download:`tree1.py<tree1.py>`
+    tree.tag_bind('cb', '<1>', cb)
 
+This adds 3 virtual events::
+
+    tree.tag_bind('cb', '<<TreeviewSelect>>', cb)
+    tree.tag_bind('cb', '<<TreeviewOpen>>', cb)
+    tree.tag_bind('cb', '<<TreeviewClose>>', cb)
+
+In the callback function ``cb`` we print the event, the selection and the focus::
+
+    def cb(event):
+        print(event, tree.selection(), tree.focus())
+
+Something like this will be printed to the console::
+
+    <ButtonPress event num=1 x=8 y=46> ('I002',) I002
+    <VirtualEvent event x=0 y=0> ('I002',) I002
+    <VirtualEvent event x=0 y=0> ('I002',) I002
+
+.. image:: tree1_bind.png
+
+.. literalinclude:: tree1_bind.py
+
+:download:`tree1_bind.py<tree1_bind.py>`
 
 
 Two treeviews next to each other

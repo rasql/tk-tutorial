@@ -79,3 +79,4 @@ Resources
 * https://tkdocs.com/tutorial/intro.html
 * https://www.python-course.eu/python_tkinter.php
 * https://effbot.org/tkinterbook/
+* https://kite.com/python/docs/tkinter

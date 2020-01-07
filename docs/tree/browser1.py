@@ -45,7 +45,7 @@ class Demo(App):
         App.cwd = Label()
 
         Button('parent', 'os.chdir("..")')
-        Entry('system cmd', 'os.system(self.val.get())')
+        Entry('system cmd', 'os.system(self.var.get())')
 
         Text(os.__doc__)
 

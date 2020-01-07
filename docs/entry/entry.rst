@@ -20,17 +20,17 @@ Entry widget
 An **entry** widget presents the user an empty field
 where he can enter a text value.
 
-.. image:: entry1.png
-
-Each ``Entry`` object has these options:
+Each ``ttk.Entry`` object has these options:
 
 * **parent** - the parent object
 * **textvariable** - the text variable to hold the entered string
 * **width** - the numbers of characters
 * **show** - to indicate ``*`` for passwords
 
-They do not have a ``text`` or ``image`` option.
-You have to use a label widget instead.
+The **Entry** widget does not have a ``text`` or ``image`` option.
+You have to use an additional label widget instead.
+
+.. image:: entry1.png
 
 .. literalinclude:: entry1.py
 
@@ -180,3 +180,34 @@ A scale widget provides a way for users to choose a numeric value through direct
 .. literalinclude:: scale2.py
 
 :download:`scale2.py<scale2.py>`
+
+Final implementation
+--------------------
+
+The four classes ``Entry``, ``Combobox``, ``Spinbox`` and ``Scale``
+have two common parts:
+
+* adding an optional label in front of the widget
+* adding a callback function
+
+This two functions can be placed in a specal class called ``EntryMixin``,
+which serves as second parent class for the 4 entry classes.
+
+.. literalinclude:: tklib.py
+   :pyobject: EntryMixin
+
+This allows to make the ``Entry`` class much shorter.
+
+.. literalinclude:: tklib.py
+   :pyobject: Entry
+
+The other class definitions are as follows:
+
+.. literalinclude:: tklib.py
+   :pyobject: Combobox
+
+.. literalinclude:: tklib.py
+   :pyobject: Spinbox
+
+.. literalinclude:: tklib.py
+   :pyobject: Scale
