@@ -1,21 +1,17 @@
-from tklib import *
-app = App('insert and delete')
+# Create a listbox the old way, with the insert/delete method
+import tkinter as tk
 
-def insert():
-    i = int(index.var.get())
-    listbox.insert(i, value.var.get())
+root = tk.Tk()
 
-def delete():
-    i = int(index.var.get())
-    listbox.delete(i)
+lb = tk.Listbox(root)
+lb.grid()
 
-index = Entry('index', 'print(self.var.get())', val=0)
-value = Entry('value', 'print(self.var.get())', val='new item')
+lb.insert(0, 'item0', 'item1', 'item2')
+lb.delete(1)
 
-Button('Insert', insert)
-Button('Delete', delete)
+items = dir(tk)
+for item in items:
+    lb.insert(tk.END, item)
+lb.insert(tk.END, *items)
 
-listbox = tk.Listbox(App.stack[-1], height=10)
-listbox.grid()
-
-app.run()
+root.mainloop()

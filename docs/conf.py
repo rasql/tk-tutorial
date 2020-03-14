@@ -20,13 +20,13 @@ sys.path.insert(0, os.path.abspath('.'))
 # -- Project information -----------------------------------------------------
 
 project = 'Tk tutorial'
-copyright = '2019, Raphael Holzer'
+copyright = '2019-2020, Raphael Holzer'
 author = 'Raphael Holzer'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = '2019'
+release = '2020'
 
 
 # -- General configuration ---------------------------------------------------

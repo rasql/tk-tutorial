@@ -80,3 +80,42 @@ This is a screen capture of the above program.
 .. literalinclude:: event3.py
 
 :download:`event3.py<event3.py>`
+
+
+Keyboard events
+---------------
+
+Specific keyboard events can be bound to a specific widget and trigger a callback function.
+In the example below we bind different keys to the root widget in order to call a callback function.
+The callback function inserts the event despcriptor or a short text into a **Text** widget.
+
+- **<Key>** - any key
+- **a** - a lower-case a (or any other letter)
+- **A** - an upper-case A
+- **<Return>** - the Return key
+- **<Escape>** - the Escape key
+- **<Tab>** - the Tab key
+
+Modifier keys can also bind to a callback function. 
+They work equally for the left and the right keys.
+
+- **<Shift_L>** for the Shift keys
+- **<Control_L>** for the Control keys
+- **<Alt_L>** for the Alt keys
+- **<Meta_L>** for the Command key (on the Mac)
+- **<Super_L>** for the Fn key (on the Mac)
+
+Finally we configure the **BackSpace** key to clear the screen::
+
+    root.bind('<BackSpace>', lambda e: text.delete('1.0', 'end'))
+
+The *x=-5, y=-50* coordinates are the position of the widget.
+
+This is a screen capture showing the trace of various key presses.
+
+.. image:: event4.png
+
+.. literalinclude:: event4.py
+
+:download:`event4.py<event4.py>`
+

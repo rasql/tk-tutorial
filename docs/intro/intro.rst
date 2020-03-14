@@ -1,37 +1,45 @@
 Introduction
 ============
 
-Tk is a **graphical user interface** (GUI) library. It allows to create windows, buttons and all the 
-other graphical elements. 
-This tutorial shows how to use **object-oriented programming** (OOP) 
-for making applications with the **Tk** framework. 
+In this tutorial you will learn to
 
+* understand the original Tk classes
+* redefine them into more powerful classes
+* master object-oriented programming
 
 Our first program
 -----------------
 
-It is a tradition for the first program to write **Hello world** to the computer screen.
-So here is this standard initiation ritual.
+It is somewhat of a tradition for programming tutorials to start with a program 
+which writes **hello world** to the computer screen.
+Here is the result of this standard initiation ritual:
 
 .. image:: intro1.png
 
 So how do we do this ?
-First we import the Python module ``tkinter`` (Tk interface) and give it the shortcut ``tk``::
+First we have to **import the module** ``tkinter`` (Tk interface) and give it the shortcut ``tk``::
 
     import tkinter as tk
 
-Then we create the ``Tk()`` root widget which becomes the root for all other widgets::
+Then we create the **root widget** with class ``tk.Tk`` which becomes the root for all other widgets::
 
     root = tk.Tk()
 
-Then we create a ``Label()`` widget which has *root* as parent and *Hello world* as text attribute. 
-To make the label appear on the window, we must call the ``grid()`` placement method::
+Then we create a **label widget** with class ``tk.Label`` which has *root* as parent and *hello world* as text attribute::
 
-    tk.Label(root, text='hello world!', font='Arial 24').grid()
+    label = tk.Label(root, text='hello world!', font='Arial 24')
 
-Finally we call the Tk ``mainloop()`` method which keeps the window open until the **close** button is clicked::
+Then we have to call a **placement method** such as ``grid()``, to make the label appear inside the window::
+
+    label.grid()
+
+Finally we call the **main loop** method ``tk.mainloop()`` which runs continually
+until the *window close button* is clicked or the *quit Python menu* is chosen::
 
     root.mainloop()
+
+This method call is usully the last one in the program, after all the graphical elements and 
+callback functions have been defined.
 
 :download:`intro1.py<intro1.py>`
 
@@ -46,11 +54,22 @@ We start by defining the new ``App`` class::
 
     class App:
 
-The constructor method ``__init__`` creates the root and the label::
+This class has two methods:
+
+* the **constructor** method ``__init__()``
+* the **main loop** method ``run()``
+
+The constructor method creates the instance attributes ``self.root`` and ``self.label``.
+It then calls the placement method on the label object::
 
     def __init__(self):
         self.root = tk.Tk()
-        tk.Label(self.root, text='hello world!', font='Arial 24').pack()
+        self.label = tk.Label(self.root, text='hello world!', font='Arial 24')
+        self.label.grid()
+
+In case we do not need to keep a reference to the label object, we can shorten the last two lines to::
+
+    tk.Label(self.root, text='hello world!', font='Arial 24').grid()
 
 The ``run`` method starts the main loop::
 
@@ -58,11 +77,9 @@ The ``run`` method starts the main loop::
         """Run the main loop."""
         self.root.mainloop()
 
-
 Finally we instantiate the App and run it::
 
-    if __name__ == '__main__':
-        App().run()
+    App().run()
 
 This is the result:
 
@@ -79,27 +96,28 @@ Classic and themed widgets
 The elements of a graphical user interface are called **widgets**. 
 In Tk there are two generations of widgets:
 
-* the classic ``tk`` widgets
-* the new **themed** ``ttk`` widgets
+* the old **classic** ``tk`` widgets, originally introduced in 1991
+* the new **themed** ``ttk`` widgets, added in 2007 with version 8.5
 
 The new themed widgets can be found in the submodule ``tkinter.ttk``. 
+Whenever a newer themed widget is available, we will use it.
 We import the classic and the new themed widgets with this import statement::
 
     import tkinter as tk
     import tkinter.ttk as ttk
 
-This creates a **classic label** and a new **themed label**::
+This code creates a **classic label** and a new **themed label**::
 
     tk.Label(self.root, text='tk.Label').pack()
     ttk.Label(self.root, text='ttk.Label').pack()
 
-This creates a **classic button** and a new **themed button**::
+This code creates a **classic button** and a new **themed button**::
 
     tk.Button(self.root, text='tk.Button').pack()
     ttk.Button(self.root, text='ttk.Button').pack()
 
-This is a screen capture of the result. 
-The new themed widgets have a gray background and the buttons have uniform size.
+The screen capture below shows the difference in appearance. 
+The new themed widgets (ttk) have a gray background and the buttons have uniform size.
 
 .. image:: intro3.png
 
@@ -107,19 +125,32 @@ The new themed widgets have a gray background and the buttons have uniform size.
 
 :download:`intro3.py<intro3.py>`
 
+Setting options
+---------------
+
+Options can be set in three ways:
+
+- at object creation, using **keyword arguments**
+- after object creation, using a **dictionary index**
+- use the **config() method** with keyword attributes
+
+.. literalinclude:: intro4.py
+
+:download:`intro4.py<intro4.py>`
+
 
 Let's define our own widget class
 ---------------------------------
 
-We are now going to define our own Tk widget classes.
-They have the following advantages:
+We are now going to redefine the original tk and ttk classes to make our own Tk widget classes.
+This new classes have the following advantages:
 
-* the **text** option has a default (Label, Button)
+* the **text** option has a default value (*Label, Button, etc.*)
 * the **parent** object is automatically set (root)
 * all **keyword** arguments are passed on (kwargs)
 * the **themed** version is used when available (ttk)
 
-This is the new ``Label`` class:
+This is our new ``Label`` class based on the original themed class:
 
 .. literalinclude:: intro.py
    :pyobject: Label

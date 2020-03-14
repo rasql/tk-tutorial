@@ -3,8 +3,10 @@ import tkinter as tk
 class App:
     """Define the application class."""
     def __init__(self):
+
         self.root = tk.Tk()
-        tk.Label(self.root, text='hello world!', font='Arial 24').pack()
+        self.label = tk.Label(self.root, text='hello world!', font='Arial 24')
+        self.label.grid()
 
     def run(self):
         """Run the main loop."""

@@ -12,7 +12,9 @@ More tutorials
 --------------
 
 * https://opencv-tutorial.readthedocs.io
-* https://pygame.readthedocs.io
 * https://pymunk-tutorial.readthedocs.io
-* https://tk-tutorial.readthedocs.io
 * https://cocos2d-tutorial.readthedocs.io
+* https://sqlite-tutorial.readthedocs.io
+* https://ev3-tutorial.readthedocs.io
+* https://tk-tutorial.readthedocs.io
+* https://pygame.readthedocs.io

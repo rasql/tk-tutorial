@@ -34,25 +34,16 @@ Finally root calls the ``mainloop()`` method to start the program::
 Convert feet to meters
 ----------------------
 
-Now let's create a real application.
-Let's create a small program which has an input, an output
-and does something when you press a button (or when you hit the return key).
-It's a small program which converts feet to meters.
+Now let's create a real application which does something useful.
+The following program has an **input** entry field, a **button** and an **output** label. 
+When you press the button (or hit the return key) it converts feet to meters.
 
 .. image:: button2.png
 
 After importing the **classic Tk** module as ``tk``
-we define the ``calculate`` function which gets the feet value 
-and converts it to the meter value::
+we create the ``root`` object and set a descriptive window title::
 
-    def calculate(*args):
-        try:
-            value = float(feet.get())
-            meters.set(0.3048 * value)
-        except ValueError:
-            pass
-
-Then we create the ``root`` object and give a title to the window::
+    import tkinter as tk
 
     root = tk.Tk()
     root.title("Feet to meters")
@@ -67,7 +58,7 @@ Now it's time to create the three widgets:
 
 * an entry widget with the text variable ``feet``
 * a button widget with the command function ``calculate``
-* a label widget with the text variable ``meters```
+* a label widget with the text variable ``meters``
 
 All three widgets are placed with the ``pack()`` method::
 
@@ -80,6 +71,19 @@ and start the main loop::
 
     root.bind('<Return>', calculate)
     root.mainloop()
+
+The conversion is done by calling the ``calculate`` function which gets the feet value
+from the ``StringVar`` **feet**, 
+converts the value to meters and sets the ``StringVar`` **meters**.
+We enclose the calculation inside a ``try-except`` statement to account for value errors,
+in case the input string is not numeric. ::
+
+    def calculate(*args):
+        try:
+            value = float(feet.get())
+            meters.set(0.3048 * value)
+        except ValueError:
+            pass
 
 :download:`button2.py<button2.py>`
 
@@ -97,7 +101,7 @@ To understand Tk you need to understand:
 Widgets are the things you can see on the screen,
 for example a label, an entry field or a button.
 Later you will see checkboxes, radiobuttons, and listboxes.
-Widgets are often referred to as controls.
+Widgets are sometimes referred to as controls.
 
 Widgets are objects, instances of classes.
 In the example above we had the following 2-level hierarchy:
@@ -177,7 +181,7 @@ Common options are:
 * ``text`` - a static text
 * ``textvariable`` - a dynamic text from a variable
 * ``image`` - an image to be displayed
-* ``compound`` - conter, top, bottom, left, right
+* ``compound`` - center, top, bottom, left, right (text position in in relation to image)
 * ``justifiy`` - left, center, right
 * ``wraplength`` - linelength for long labels
 
@@ -210,14 +214,14 @@ This function is called, but without an argument.
 We can use the ``lambda`` function to create a function on the fly and 
 provide an argument.
 
+.. literalinclude:: button3.py
+
+:download:`button3.py<button3.py>`
+
 Pressing the 3 buttons one after another writes this to the console::
 
     button 1
     button 2
     button 3
-
-.. literalinclude:: button3.py
-
-:download:`button3.py<button3.py>`
 
 

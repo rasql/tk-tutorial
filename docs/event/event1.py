@@ -1,18 +1,15 @@
 from tklib import *
 
-class Demo(App):
-    """Write Button and Motion events to statusbar."""
-    def __init__(self):
-        super().__init__()
-        Label("Button and Motion events", font="Arial 24")
-        Label('Display the event in the status bar')
+def cb(event):
+    """Callback function."""
+    print(event)  
 
-        App.root.bind('<Button>', self.cb)
-        App.root.bind('<Motion>', self.cb)
+app = App('Events and bindings')
 
-    def cb(self, event):
-        """Callback function."""
-        App.status['text'] = event        
-    
-if __name__ == '__main__':
-    Demo().run()
+Label("Button and Motion events", font="Arial 24")
+Label('Display the event in the status bar')
+
+app.root.bind('<Button>', cb)
+app.root.bind('<Motion>', cb)
+
+app.run()

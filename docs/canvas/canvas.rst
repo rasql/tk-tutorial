@@ -110,3 +110,19 @@ Draw shapes with the mouse
 .. literalinclude:: canvas9.py
 
 :download:`canvas9.py<canvas9.py>`
+
+
+Draw straight lines with the mouse
+----------------------------------
+
+In order to draw with the mouse we have to add two bindings to the canvas:
+
+- **<Button-1>** to initiate the drawing, calling the ``start()`` method
+- **<B1_Motion>** to update the current drawing, calling the ``move()`` method
+
+.. image:: draw1.png
+
+.. literalinclude:: draw1.py
+
+:download:`draw1.py<draw1.py>`
+

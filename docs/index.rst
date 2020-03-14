@@ -3,14 +3,13 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to my Tk tutorial!
-==========================
+Welcome to this Tk tutorial!
+============================
 
-In this tutorial I will teach you to
-
-* understand the Tk classes
-* redefine them into much more powerful classes
-* master object-oriented programming
+Tk is a **graphical user interface** (GUI) library. It allows to create windows, buttons and all the 
+other graphical elements.
+This tutorial shows how to use **object-oriented programming** (OOP) 
+for making applications with the **Tk** framework. 
 
 .. toctree::
    :maxdepth: 2

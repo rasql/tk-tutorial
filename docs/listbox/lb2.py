@@ -1,17 +1,11 @@
-from tklib import *
-app = App('insert and delete')
-var = tk.StringVar(value=dir(tk))
+# Display a simple listbox
+import tkinter as tk
 
-def configure():
-    i = int(index.var.get())
-    bg = background.var.get()
-    listbox.itemconfigure(i, background=bg)
+root = tk.Tk()
 
-index = Entry('index', 'print(self.var.get())', val=3)
-background = Entry('background', 'print(self.var.get())', val='#f0f0ff')
-Button('Configure', configure)
+items = dir(tk)
+var = tk.StringVar()
+var.set(items)
+tk.Listbox(root, listvariable=var).grid()
 
-listbox = tk.Listbox(App.stack[-1], listvariable=var, height=10)
-listbox.grid()
-
-app.run()
+root.mainloop()
